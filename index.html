@@ -258,9 +258,38 @@ header.scrolled{border-bottom-color:var(--border);background:rgba(10,12,20,.9)}
   aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
 }
 /* প্রজেক্টের স্ক্রিনশট — project1.jpg থেকে project6.jpg ফাইল থাকলে অটো দেখাবে */
-.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;cursor:zoom-in;transition:opacity .5s ease,transform .5s ease}
 .cover-img,.testi-photo{opacity:0;transition:opacity .5s ease}
 .cover-img.loaded,.testi-photo.loaded{opacity:1}
+.zoom-hint{
+  position:absolute;bottom:12px;right:12px;z-index:3;width:38px;height:38px;border-radius:50%;
+  background:rgba(10,12,20,.62);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;justify-content:center;color:#fff;opacity:0;
+  transition:opacity .3s ease,transform .3s ease;transform:scale(.85);pointer-events:none;
+}
+.project-cover:hover .zoom-hint{opacity:1;transform:scale(1)}
+.project-cover:hover .cover-img{transform:scale(1.03)}
+
+/* ============ LIGHTBOX (ক্লিক করলে ছবি বড় দেখা) ============ */
+.lightbox{
+  position:fixed;inset:0;background:rgba(4,6,14,.93);backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);z-index:3000;display:none;align-items:center;justify-content:center;
+  flex-direction:column;gap:16px;padding:30px;cursor:zoom-out;
+}
+.lightbox.open{display:flex}
+.lightbox img{
+  max-width:min(1100px,94vw);max-height:80vh;border-radius:14px;border:1px solid var(--border-strong);
+  box-shadow:0 30px 90px rgba(0,0,0,.7);animation:lbIn .3s ease;
+}
+@keyframes lbIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.lb-caption{color:#c7cce0;font-size:.92rem;font-weight:500;text-align:center;padding:8px 20px;background:rgba(255,255,255,.05);border-radius:99px;border:1px solid var(--border-strong)}
+.lb-close{
+  position:absolute;top:18px;right:24px;width:46px;height:46px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid var(--border-strong);color:#fff;font-size:1.5rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;
+  font-family:inherit;line-height:1;z-index:3001;
+}
+.lb-close:hover{background:var(--grad);border-color:transparent;transform:rotate(90deg)}
 .project-cover .p-emoji{position:relative;z-index:1}
 .project-cover .p-tag{z-index:2}
 .project-cover .p-emoji{font-size:3rem;filter:drop-shadow(0 8px 18px rgba(0,0,0,.4))}
@@ -999,6 +1028,13 @@ footer .heart{color:#f43f5e}
   </div>
 </footer>
 
+<!-- ================= LIGHTBOX (ছবি জুম) ================= -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+  <img id="lbImg" src="" alt="Project screenshot zoomed view">
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
 <!-- ================= LEGAL MODAL ================= -->
 <div class="modal-overlay" id="legalModal">
   <div class="modal">
@@ -1240,6 +1276,46 @@ document.querySelectorAll('[data-legal]').forEach(btn =>
 document.getElementById('legalClose').addEventListener('click', closeLegal);
 legalModal.addEventListener('click', e => { if (e.target === legalModal) closeLegal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLegal(); });
+
+/* ============ LIGHTBOX (প্রজেক্টের ছবিতে ক্লিক করলে বড় দেখা) ============ */
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCaption = document.getElementById('lbCaption');
+const lbClose = document.getElementById('lbClose');
+
+function openLb(src, caption) {
+  lbImg.src = src;
+  lbCaption.textContent = caption;
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+/* প্রতিটা প্রজেক্ট কভারে ম্যাগনিফায়ার হিন্ট + ক্লিক ইভেন্ট */
+document.querySelectorAll('.project-cover').forEach(cover => {
+  if (!cover.querySelector('.zoom-hint')) {
+    const hint = document.createElement('span');
+    hint.className = 'zoom-hint';
+    hint.innerHTML = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg>';
+    cover.appendChild(hint);
+  }
+  const img = cover.querySelector('.cover-img');
+  if (!img) return;
+  img.addEventListener('click', () => {
+    const card = cover.closest('.project-card');
+    const title = card && card.querySelector('h3') ? card.querySelector('h3').textContent : 'Project screenshot';
+    openLb(img.getAttribute('src'), title);
+  });
+});
+
+lbClose.addEventListener('click', closeLb);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLb(); });
 
 /* ============ FOOTER YEAR ============ */
 document.getElementById('year').textContent = new Date().getFullYear();
