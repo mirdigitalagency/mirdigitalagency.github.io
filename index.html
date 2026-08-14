@@ -61,7 +61,24 @@
       "founder": {
         "@type": "Person",
         "name": "Syed Sazzad Hossain (Bappy)"
-      }
+      },
+      "employee": [
+        {
+          "@type": "Person",
+          "name": "Md Arif Hossain",
+          "jobTitle": "Video Editor & YouTube SEO Specialist"
+        },
+        {
+          "@type": "Person",
+          "name": "Mahmudul Hasan",
+          "jobTitle": "Web Developer, Designer & SEO Specialist"
+        },
+        {
+          "@type": "Person",
+          "name": "Md Ahmad Imran",
+          "jobTitle": "Graphic Designer Specialist"
+        }
+      ]
     },
     {
       "@type": "WebSite",
@@ -612,6 +629,65 @@ footer .heart{color:#f43f5e}
 }
 .faq-item.open .faq-a{display:block}
 
+/* ============ TEAM ============ */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.team-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px 20px 24px;text-align:center;transition:all .35s ease;position:relative;overflow:hidden;
+}
+.team-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s ease;
+}
+.team-card:hover{transform:translateY(-7px);border-color:var(--border-strong);box-shadow:var(--shadow)}
+.team-card:hover::before{transform:scaleX(1)}
+.team-photo-wrap{position:relative;width:110px;height:110px;margin:0 auto 18px}
+.team-photo{
+  position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;
+  object-position:center 20%;border:3px solid var(--border-strong);z-index:1;
+}
+.team-initial{
+  position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-family:'Poppins',sans-serif;color:#fff;background:var(--grad);font-size:2rem;
+}
+.team-card h3{font-size:1rem;margin-bottom:6px}
+.team-role{
+  display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.25);
+  padding:4px 12px;border-radius:99px;margin-bottom:12px;
+}
+.team-card p{color:var(--muted);font-size:.84rem;line-height:1.7}
+@media(max-width:1024px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.team-grid{grid-template-columns:1fr}}
+
+/* ============ WORK GALLERY (15 client works) ============ */
+.work-gallery{margin-top:56px}
+.work-gallery .g-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.work-gallery .g-head h3{font-size:1.35rem;font-weight:700}
+.work-gallery .g-head .line{flex:1;height:1px;background:linear-gradient(90deg,var(--border-strong),transparent)}
+.work-grid{columns:3;column-gap:18px}
+.work-item{
+  break-inside:avoid;margin-bottom:18px;background:var(--card);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;transition:border-color .3s ease,transform .3s ease;
+}
+.work-item:hover{border-color:var(--border-strong);transform:translateY(-4px)}
+.work-media{position:relative;cursor:zoom-in;overflow:hidden}
+.work-img{width:100%;height:auto;display:block;opacity:0;transition:opacity .5s ease,transform .5s ease}
+.work-img.loaded{opacity:1}
+.work-media:hover .work-img{transform:scale(1.03)}
+.work-media .zoom-hint{
+  position:absolute;bottom:12px;right:12px;width:38px;height:38px;border-radius:50%;
+  background:rgba(10,12,20,.62);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;justify-content:center;color:#fff;opacity:0;
+  transition:opacity .3s ease,transform .3s ease;transform:scale(.85);pointer-events:none;z-index:3;
+}
+.work-media:hover .zoom-hint{opacity:1;transform:scale(1)}
+.work-cap{padding:12px 16px 14px}
+.work-cap .wc-title{font-weight:600;font-size:.88rem;color:var(--text);line-height:1.4}
+.work-cap .wc-sub{font-size:.75rem;color:var(--muted);margin-top:3px}
+@media(max-width:1024px){.work-grid{columns:2}}
+@media(max-width:560px){.work-grid{columns:1}}
+
 /* ============ BACK TO TOP ============ */
 #toTop{
   position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:13px;border:none;cursor:pointer;
@@ -677,6 +753,7 @@ footer .heart{color:#f43f5e}
       <li><a href="#skills">Skills</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#team">Team</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-cta">
@@ -943,6 +1020,164 @@ footer .heart{color:#f43f5e}
         </div>
       </article>
     </div>
+    <div class="work-gallery reveal">
+      <div class="g-head">
+        <h3>More of Our <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">Work</span></h3>
+        <div class="line"></div>
+      </div>
+      <div class="work-grid">
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work1.jpg" alt="Facebook Ads - Messaging Campaign — 7,641 conversations" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - Messaging Campaign">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Facebook Ads - Messaging Campaign</div>
+          <div class="wc-sub">7,641 conversations</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work2.jpg" alt="Facebook Ads - Website Purchases — 3,147 orders" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - Website Purchases">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Facebook Ads - Website Purchases</div>
+          <div class="wc-sub">3,147 orders</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work3.jpg" alt="Facebook Ads - 5.1K Purchases — $7.85K spent" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - 5.1K Purchases">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Facebook Ads - 5.1K Purchases</div>
+          <div class="wc-sub">$7.85K spent</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work4.jpg" alt="Facebook Ads - Daily Active Sales — 17 purchases today" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - Daily Active Sales">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Facebook Ads - Daily Active Sales</div>
+          <div class="wc-sub">17 purchases today</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work5.jpg" alt="Facebook Ads - Sales Campaign — 135 purchases" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - Sales Campaign">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Facebook Ads - Sales Campaign</div>
+          <div class="wc-sub">135 purchases</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work6.jpg" alt="Shopify Report - Daily Sales — $4,555.64 today" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Report - Daily Sales">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Shopify Report - Daily Sales</div>
+          <div class="wc-sub">$4,555.64 today</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work7.jpg" alt="Shopify Report - 2-Day Sales — $12,221.14 in 2 days" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Report - 2-Day Sales">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Shopify Report - 2-Day Sales</div>
+          <div class="wc-sub">$12,221.14 in 2 days</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work8.jpg" alt="Pinterest Ads - ROAS Report — 117% ROAS" class="work-img" loading="lazy" decoding="async" data-cap="Pinterest Ads - ROAS Report">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Pinterest Ads - ROAS Report</div>
+          <div class="wc-sub">117% ROAS</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work9.jpg" alt="Shopify Live View - Real-Time Orders — live sales tracking" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Live View - Real-Time Orders">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Shopify Live View - Real-Time Orders</div>
+          <div class="wc-sub">live sales tracking</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work10.jpg" alt="Shopify Report - Yesterday Orders — 12 orders, 4.72% conv." class="work-img" loading="lazy" decoding="async" data-cap="Shopify Report - Yesterday Orders">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Shopify Report - Yesterday Orders</div>
+          <div class="wc-sub">12 orders, 4.72% conv.</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work11.jpg" alt="Shopify Report - 90-Day Sales — $14,480.37, 435 orders" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Report - 90-Day Sales">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Shopify Report - 90-Day Sales</div>
+          <div class="wc-sub">$14,480.37, 435 orders</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work12.jpg" alt="Pinterest Ads - Profit Report — +283% net profit" class="work-img" loading="lazy" decoding="async" data-cap="Pinterest Ads - Profit Report">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Pinterest Ads - Profit Report</div>
+          <div class="wc-sub">+283% net profit</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work13.jpg" alt="Shopify Report - 30-Day Channels — $28,326.56, +20%" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Report - 30-Day Channels">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Shopify Report - 30-Day Channels</div>
+          <div class="wc-sub">$28,326.56, +20%</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work14.jpg" alt="Shopify Dashboard - Orders — 37 orders today" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Dashboard - Orders">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">Shopify Dashboard - Orders</div>
+          <div class="wc-sub">37 orders today</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-media">
+          <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
+          <img src="work15.jpg" alt="MrWatch.to - E-Commerce Website — watch store website" class="work-img" loading="lazy" decoding="async" data-cap="MrWatch.to - E-Commerce Website">
+        </div>
+        <div class="work-cap">
+          <div class="wc-title">MrWatch.to - E-Commerce Website</div>
+          <div class="wc-sub">watch store website</div>
+        </div>
+      </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -994,6 +1229,55 @@ footer .heart{color:#f43f5e}
           <div class="org">Always Learning</div>
           <p>🎓 Bachelor's Degree (Marketing) &nbsp;•&nbsp; 📜 Google Digital Marketing &amp; E-Commerce Certificate &nbsp;•&nbsp; 📜 Meta Blueprint Certified &nbsp;•&nbsp; 📜 SEO Fundamentals (Semrush Academy)</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section id="team">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Our Team</span>
+      <h2>Meet The <span>Team</span></h2>
+      <p>The specialists behind MIR Digital Agency — each an expert in their craft, working together to grow your brand.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo-wrap">
+          <span class="team-initial">B</span>
+          <img src="profile.jpg" alt="Syed Sazzad Hossain (Bappy)" class="team-photo" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        </div>
+        <h3>Syed Sazzad Hossain (Bappy)</h3>
+        <span class="team-role">Founder &amp; Lead Digital Marketer</span>
+        <p>Leads strategy, social media management and ad campaigns that turn attention into revenue.</p>
+      </div>
+      <div class="team-card reveal d1">
+        <div class="team-photo-wrap">
+          <span class="team-initial">A</span>
+          <img src="team1.jpg" alt="Md Arif Hossain" class="team-photo" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        </div>
+        <h3>Md Arif Hossain</h3>
+        <span class="team-role">Video Editor &amp; YouTube SEO Specialist</span>
+        <p>Crafts scroll-stopping videos and optimizes them to rank higher on YouTube.</p>
+      </div>
+      <div class="team-card reveal d2">
+        <div class="team-photo-wrap">
+          <span class="team-initial">M</span>
+          <img src="team2.jpg" alt="Mahmudul Hasan" class="team-photo" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        </div>
+        <h3>Mahmudul Hasan</h3>
+        <span class="team-role">Web Developer, Designer &amp; SEO Specialist</span>
+        <p>Builds fast, modern, responsive websites — and makes them visible on Google.</p>
+      </div>
+      <div class="team-card reveal d3">
+        <div class="team-photo-wrap">
+          <span class="team-initial">I</span>
+          <img src="team3.jpg" alt="Md Ahmad Imran" class="team-photo" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        </div>
+        <h3>Md Ahmad Imran</h3>
+        <span class="team-role">Graphic Designer Specialist</span>
+        <p>Designs brand identities, posts and creatives that make your business unforgettable.</p>
       </div>
     </div>
   </div>
@@ -1521,6 +1805,13 @@ document.querySelectorAll('.project-cover').forEach(cover => {
 lbClose.addEventListener('click', closeLb);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLb(); });
+
+/* ওয়ার্ক গ্যালারির ছবিতেও একই জুম */
+document.querySelectorAll('.work-img').forEach(img => {
+  img.addEventListener('click', () => {
+    openLb(img.getAttribute('src'), img.getAttribute('data-cap') || 'Our Work');
+  });
+});
 
 /* ============ FAQ ACCORDION ============ */
 document.querySelectorAll('.faq-q').forEach(btn => {
