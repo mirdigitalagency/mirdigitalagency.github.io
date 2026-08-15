@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://mirdigitalagency.github.io/</loc>
+    <image:image>
+      <image:loc>https://mirdigitalagency.github.io/mir-digital-agency-logo.png</image:loc>
+      <image:title>MIR Digital Agency logo</image:title>
+      <image:caption>MIR Digital Agency — Meta Ads That Book More Jobs &amp; Sales for US &amp; Canada businesses. Official logo.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mirdigitalagency.github.io/mir-digital-agency-logo-full.png</image:loc>
+      <image:title>MIR Digital Agency full logo with wordmark</image:title>
+      <image:caption>MIR Digital Agency — full logo lockup with wordmark. Digital marketing agency founded by Syed Sazzad Hossain (Bappy).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mirdigitalagency.github.io/mir-digital-agency-facebook-cover-syed-sazzad-hossain.jpg</image:loc>
+      <image:title>Syed Sazzad Hossain (Bappy) — Founder of MIR Digital Agency</image:title>
+      <image:caption>Syed Sazzad Hossain (Bappy), Founder of MIR Digital Agency — Meta Ads That Book More Jobs &amp; Sales for US &amp; Canada businesses.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mirdigitalagency.github.io/mir-digital-agency-linkedin-banner-syed-sazzad-hossain.jpg</image:loc>
+      <image:title>MIR Digital Agency LinkedIn banner — Syed Sazzad Hossain (Bappy)</image:title>
+      <image:caption>MIR Digital Agency founder Syed Sazzad Hossain (Bappy) — Facebook &amp; Instagram ad campaigns for home services, e-commerce, dental and real estate businesses in the US and Canada.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mirdigitalagency.github.io/mir-digital-agency-whatsapp-poster.jpg</image:loc>
+      <image:title>MIR Digital Agency — Meta Ads That Book More Jobs &amp; Sales poster</image:title>
+      <image:caption>MIR Digital Agency promotional poster — Facebook &amp; Instagram Ads, Lead Generation &amp; ROAS Reporting. Free 2-Minute Ad Audit at mirdigitalagency.github.io.</image:caption>
+    </image:image>
+  </url>
+</urlset>
