@@ -304,27 +304,42 @@ section{padding:96px 24px;position:relative}
   .brand{font-size:.88rem}
 }
 
-/* ============ NAVBAR ============ */
+/* ============ NAVBAR (প্রিমিয়াম) ============ */
 header{
   position:fixed;top:0;left:0;right:0;z-index:1000;
-  background:rgba(10,12,20,.96);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s ease,background .3s ease;
+  background:linear-gradient(180deg,rgba(13,16,34,.97) 0%,rgba(9,11,22,.95) 100%);
+  border-bottom:1px solid rgba(148,163,255,.10);
+  transition:box-shadow .3s ease;
 }
-header.scrolled{border-bottom-color:var(--border);background:rgba(10,12,20,.9)}
-.nav{max-width:1150px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px 24px}
-.brand{font-size:1.06rem;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+header::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(139,92,246,.65) 30%,rgba(34,211,238,.65) 70%,transparent 100%);
+  opacity:.55;pointer-events:none;
+}
+header.scrolled{box-shadow:0 12px 34px rgba(2,4,14,.55)}
+.nav{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+.brand{display:flex;align-items:center;gap:10px;font-size:1.04rem;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.bmark{
+  width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  background-image:linear-gradient(#0d1226,#0d1226),linear-gradient(135deg,#8b5cf6,#22d3ee);
+  background-origin:border-box;background-clip:padding-box,border-box;border:1.6px solid transparent;
+  box-shadow:0 4px 14px rgba(99,102,241,.35);
+}
+.bmark i{font-style:normal;font-weight:800;font-size:1rem;background:linear-gradient(135deg,#a78bfa,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
 .brand .dot{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-.nav-links{display:flex;align-items:center;gap:30px}
-.nav-links a{font-size:.9rem;font-weight:500;color:var(--muted);transition:color .25s ease;position:relative}
-.nav-links a::after{
-  content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;
-  background:var(--grad);border-radius:2px;transition:width .3s ease;
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  font-size:.84rem;font-weight:500;color:var(--muted);
+  padding:8px 14px;border-radius:99px;transition:all .25s ease;position:relative;
 }
-.nav-links a:hover,.nav-links a.active{color:var(--text)}
-.nav-links a:hover::after,.nav-links a.active::after{width:100%}
-.nav-cta{display:flex;align-items:center;gap:16px}
-.nav-cta .btn{padding:10px 22px;font-size:.85rem}
+.nav-links a:hover{color:var(--text);background:rgba(148,163,255,.09)}
+.nav-links a.active{
+  color:#fff;font-weight:600;
+  background:linear-gradient(135deg,rgba(139,92,246,.92),rgba(34,211,238,.78));
+  box-shadow:0 4px 16px rgba(99,102,241,.38);
+}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.nav-cta .btn{padding:11px 22px;font-size:.84rem;font-weight:700}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:1001}
 .hamburger span{width:24px;height:2.4px;background:var(--text);border-radius:2px;transition:all .3s ease}
 .hamburger.open span:nth-child(1){transform:translateY(7.4px) rotate(45deg)}
@@ -664,6 +679,19 @@ footer .heart{color:#f43f5e}
 .work-gallery .g-head h3{font-size:1.35rem;font-weight:700}
 .work-gallery .g-head .line{flex:1;height:1px;background:linear-gradient(90deg,var(--border-strong),transparent)}
 .work-grid{columns:3;column-gap:18px}
+.more-content{display:none}
+.more-content.open{display:block;animation:moreIn .5s ease}
+@keyframes moreIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.more-content .g-head{margin-top:36px}
+.work-more-btn{
+  margin:0 auto;display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 38px;border-radius:99px;border:none;cursor:pointer;font-family:inherit;
+  font-weight:600;font-size:.95rem;color:#fff;background:var(--grad);
+  box-shadow:0 10px 28px rgba(99,102,241,.4);transition:transform .3s ease,box-shadow .3s ease;
+}
+.work-more-btn:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(99,102,241,.55)}
+.work-more-btn .wm-chev{transition:transform .35s ease}
+.work-more-btn.open .wm-chev{transform:rotate(180deg)}
 .work-item{
   break-inside:avoid;margin-bottom:18px;background:var(--card);border:1px solid var(--border);
   border-radius:14px;overflow:hidden;transition:border-color .3s ease,transform .3s ease;
@@ -994,7 +1022,7 @@ footer .heart{color:#f43f5e}
 <!-- ================= NAVBAR ================= -->
 <header id="header">
   <nav class="nav">
-    <a href="#home" class="brand">MIR Digital&nbsp;<span class="dot">Agency</span></a>
+    <a href="#home" class="brand"><span class="bmark"><i>M</i></span><span>MIR Digital<span class="dot">&nbsp;Agency</span></span></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home" class="active">Home</a></li>
       <li><a href="#results">Results</a></li>
@@ -1369,6 +1397,40 @@ footer .heart{color:#f43f5e}
   </div>
 </section>
 
+<!-- ================= PROCESS ================= -->
+<section id="process">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Process</span>
+      <h2>From Free Audit to <span>Live Campaign</span></h2>
+      <p>No 40-page proposal. You see the plan on your own ads first.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-card reveal">
+        <div class="process-num">01</div>
+        <h3>Free 2-minute audit</h3>
+        <p>We pull your page, Ad Library and offer. You get a short video: what is leaking money and what we would change first.</p>
+      </div>
+      <div class="process-card reveal d1">
+        <div class="process-num">02</div>
+        <h3>Strategy</h3>
+        <p>You pick the package. We join your Business Manager as a partner. Ads spend stays on your card. You keep the asset.</p>
+      </div>
+      <div class="process-card reveal d2">
+        <div class="process-num">03</div>
+        <h3>Launch</h3>
+        <p>Pixel / CAPI, lead form or call campaign, 3–5 creatives, tight geo around the jobs you can actually serve.</p>
+      </div>
+      <div class="process-card reveal d3">
+        <div class="process-num">04</div>
+        <h3>Weekly optimize</h3>
+        <p>Kill losers. Scale winners. One report: spend, leads, booked jobs, next move. You stay on the tools.</p>
+      </div>
+    </div>
+    <p class="process-tagline reveal">You approve. We execute.</p>
+  </div>
+</section>
+
 <!-- ================= CASE STUDIES ================= -->
 <section id="portfolio">
   <div class="container">
@@ -1449,12 +1511,16 @@ footer .heart{color:#f43f5e}
 
     <!-- ===== MORE RESULTS GALLERY ===== -->
     <div class="more-results reveal">
+      <button class="work-more-btn" id="workMoreBtn" type="button">
+        <span class="wm-label">Show 11 More Results</span>
+        <svg class="wm-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="more-content" id="moreResults">
       <div class="g-head">
         <h3>More campaign <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">results</span></h3>
         <div class="line"></div>
       </div>
-      <div class="work-grid">
-      <div class="work-item">
+      <div class="work-grid"><div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
           <img style="aspect-ratio:0.7775" src="work3.jpg" alt="Facebook Ads - 5.1K Purchases — $7.85K spent" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - 5.1K Purchases">
@@ -1564,6 +1630,8 @@ footer .heart{color:#f43f5e}
           <div class="wc-sub">watch store website</div>
         </div>
       </div>
+      </div>
+
       </div>
     </div>
 
@@ -1683,40 +1751,6 @@ footer .heart{color:#f43f5e}
         <div class="spot-note"><strong>Verify anytime:</strong> open the Facebook page → Page transparency → Page management history — our team is listed there.</div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= PROCESS ================= -->
-<section id="process">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="kicker">Process</span>
-      <h2>From Free Audit to <span>Live Campaign</span></h2>
-      <p>No 40-page proposal. You see the plan on your own ads first.</p>
-    </div>
-    <div class="process-grid">
-      <div class="process-card reveal">
-        <div class="process-num">01</div>
-        <h3>Free 2-minute audit</h3>
-        <p>We pull your page, Ad Library and offer. You get a short video: what is leaking money and what we would change first.</p>
-      </div>
-      <div class="process-card reveal d1">
-        <div class="process-num">02</div>
-        <h3>Strategy</h3>
-        <p>You pick the package. We join your Business Manager as a partner. Ads spend stays on your card. You keep the asset.</p>
-      </div>
-      <div class="process-card reveal d2">
-        <div class="process-num">03</div>
-        <h3>Launch</h3>
-        <p>Pixel / CAPI, lead form or call campaign, 3–5 creatives, tight geo around the jobs you can actually serve.</p>
-      </div>
-      <div class="process-card reveal d3">
-        <div class="process-num">04</div>
-        <h3>Weekly optimize</h3>
-        <p>Kill losers. Scale winners. One report: spend, leads, booked jobs, next move. You stay on the tools.</p>
-      </div>
-    </div>
-    <p class="process-tagline reveal">You approve. We execute.</p>
   </div>
 </section>
 
@@ -2148,6 +2182,20 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     if (!wasOpen) item.classList.add('open');
   });
 });
+
+/* ============ WORK GALLERY — SHOW MORE (১১টা রেজাল্ট) ============ */
+const workMoreBtn = document.getElementById('workMoreBtn');
+if (workMoreBtn) {
+  const moreContent = document.getElementById('moreResults');
+  const wmLabel = workMoreBtn.querySelector('.wm-label');
+  let expanded = false;
+  workMoreBtn.addEventListener('click', () => {
+    expanded = !expanded;
+    if (moreContent) moreContent.classList.toggle('open', expanded);
+    workMoreBtn.classList.toggle('open', expanded);
+    wmLabel.textContent = expanded ? 'Show Less' : 'Show 11 More Results';
+  });
+}
 
 /* ============ FOOTER YEAR ============ */
 document.getElementById('year').textContent = new Date().getFullYear();
