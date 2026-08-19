@@ -255,6 +255,46 @@ else window.addEventListener('load', function(){ setTimeout(loadGA, 1500); });
               "name": "Social Media Marketing",
               "description": "Content, community management and paid social for growing brands."
             }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Server-Side CAPI & Pixel Engineering",
+              "description": "Server-side Meta Conversion API and pixel setup with event deduplication to recover lost iOS tracking signals."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Dynamic Creative Testing (3:2:2)",
+              "description": "Systematic testing of video hooks, copy angles and offers to find the lowest cost per customer."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Instant Lead Funnels",
+              "description": "Mobile in-app lead forms with qualifying questions and instant dispatch to your team."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Retargeting Campaigns",
+              "description": "7-day hyper-local retargeting loop using video testimonials and social proof."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Call Tracking & ROI Reporting",
+              "description": "Call tracking attribution and a one-page weekly ROI dashboard showing booked jobs and revenue."
+            }
           }
         ]
       }
@@ -313,18 +353,24 @@ else window.addEventListener('load', function(){ setTimeout(loadGA, 1500); });
         {
           "@type": "ListItem",
           "position": 3,
+          "name": "Capabilities",
+          "item": "https://mirdigitalagency.github.io/#capabilities"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
           "name": "Results",
           "item": "https://mirdigitalagency.github.io/#results"
         },
         {
           "@type": "ListItem",
-          "position": 4,
+          "position": 5,
           "name": "Pricing",
           "item": "https://mirdigitalagency.github.io/#pricing"
         },
         {
           "@type": "ListItem",
-          "position": 5,
+          "position": 6,
           "name": "Contact",
           "item": "https://mirdigitalagency.github.io/#contact"
         }
@@ -1229,6 +1275,96 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
 .niche-card h3{font-size:.95rem;margin:10px 0 6px}
 .niche-card p{color:var(--muted);font-size:.78rem;line-height:1.6}
 .niche-card:hover{transform:translateY(-6px);border-color:var(--border-strong);box-shadow:var(--shadow)}
+
+/* ============ TURNKEY CAPABILITIES (প্রিমিয়াম টেক-এজেন্সি লুক) ============ */
+#capabilities{position:relative;overflow:hidden}
+/* সেকশনের পেছনে সূক্ষ্ম নিয়ন আভা */
+#capabilities::before{
+  content:"";position:absolute;top:-18%;left:50%;transform:translateX(-50%);
+  width:900px;height:520px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(34,211,238,.10) 0%,rgba(139,92,246,.06) 45%,transparent 70%);
+  filter:blur(38px);
+}
+#capabilities .container{position:relative;z-index:1}
+
+.cap-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+}
+.cap-card{
+  position:relative;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:30px 26px;overflow:hidden;
+  transition:transform .38s cubic-bezier(.2,.7,.3,1),
+             border-color .38s ease, box-shadow .38s ease, background .38s ease;
+}
+/* উপরে গ্রেডিয়েন্ট অ্যাকসেন্ট লাইন — হোভারে ফুটে ওঠে */
+.cap-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--grad);transform:scaleX(0);transform-origin:left;
+  transition:transform .45s cubic-bezier(.2,.7,.3,1);
+}
+/* ভেতরে সূক্ষ্ম আলো */
+.cap-card::after{
+  content:"";position:absolute;top:-40%;right:-30%;width:260px;height:260px;
+  border-radius:50%;pointer-events:none;opacity:0;transition:opacity .45s ease;
+  background:radial-gradient(circle,rgba(34,211,238,.16) 0%,transparent 68%);
+}
+.cap-card:hover{
+  transform:translateY(-8px);
+  background:var(--card-2);
+  border-color:rgba(34,211,238,.42);
+  box-shadow:0 0 0 1px rgba(34,211,238,.32),
+             0 22px 54px rgba(34,211,238,.20),
+             0 10px 30px rgba(2,4,16,.55);
+}
+.cap-card:hover::before{transform:scaleX(1)}
+.cap-card:hover::after{opacity:1}
+
+.cap-ico{
+  width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:rgba(34,211,238,.10);border:1px solid rgba(34,211,238,.20);
+  color:var(--accent-2);margin-bottom:18px;
+  transition:all .38s ease;
+}
+.cap-card:hover .cap-ico{
+  background:rgba(34,211,238,.18);border-color:rgba(34,211,238,.45);
+  transform:translateY(-2px) scale(1.05);
+  box-shadow:0 8px 22px rgba(34,211,238,.28);
+}
+.cap-card h3{
+  font-size:1.06rem;font-weight:700;line-height:1.42;margin-bottom:10px;color:var(--text);
+}
+.cap-card > p{color:var(--muted);font-size:.9rem;line-height:1.68;margin-bottom:16px}
+.cap-list{list-style:none;border-top:1px solid var(--border);padding-top:14px;display:grid;gap:8px}
+.cap-list li{
+  position:relative;padding-left:22px;font-size:.83rem;color:#b9c4e6;font-weight:500;line-height:1.5;
+}
+.cap-list li::before{
+  content:"";position:absolute;left:0;top:.42em;width:13px;height:13px;border-radius:50%;
+  background:rgba(34,211,238,.14);border:1px solid rgba(34,211,238,.4);
+}
+.cap-list li::after{
+  content:"";position:absolute;left:4px;top:.66em;width:5px;height:2.5px;
+  border-left:1.6px solid var(--accent-2);border-bottom:1.6px solid var(--accent-2);
+  transform:rotate(-45deg);
+}
+/* নিচে আশ্বাসের লাইন */
+.cap-note{
+  margin:30px auto 0;max-width:760px;text-align:center;color:var(--muted);font-size:.9rem;
+  background:rgba(34,211,238,.05);border:1px solid rgba(34,211,238,.16);
+  border-radius:14px;padding:14px 20px;
+}
+.cap-note strong{color:var(--text)}
+
+@media(max-width:1024px){.cap-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){
+  .cap-grid{grid-template-columns:1fr;gap:16px}
+  .cap-card{padding:24px 20px}
+  .cap-card h3{font-size:1rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .cap-card,.cap-card::before,.cap-card::after,.cap-ico{transition:none}
+  .cap-card:hover{transform:none}
+}
 @media(max-width:1024px){.niche-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.niche-grid{grid-template-columns:1fr}}
 
@@ -1413,6 +1549,108 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
   background-repeat:no-repeat;background-position:right 14px center;cursor:pointer;
 }
 .form-group select:focus{outline:none;border-color:var(--accent-2)}
+
+/* ============================================================
+   🌟 UNIFIED PREMIUM HOVER — সিলিকন ভ্যালি টেক-এজেন্সি লুক
+   পুরো সাইটের সব কার্ডে একই স্মুথ লিফট + নিয়ন ব্লু গ্লো
+   ============================================================ */
+.stat,.problem-card,.diff-card,.service-card,.niche-card,.price-card,
+.process-card,.cs-card,.work-item,.team-card,.proof-stat,.cap-card,
+.faq-item,.about-card,.contact-info-card{
+  position:relative;
+  transition:transform .38s cubic-bezier(.2,.7,.3,1),
+             border-color .38s ease,
+             box-shadow .38s ease,
+             background .38s ease !important;
+}
+
+/* ---- হোভার: স্মুথ লিফট + নিয়ন ব্লু গ্লো ---- */
+.stat:hover,.problem-card:hover,.diff-card:hover,.service-card:hover,
+.niche-card:hover,.price-card:hover,.process-card:hover,.cs-card:hover,
+.work-item:hover,.team-card:hover,.proof-stat:hover,.cap-card:hover,
+.faq-item:hover,.about-card:hover,.contact-info-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(34,211,238,.42) !important;
+  box-shadow:0 0 0 1px rgba(34,211,238,.30),
+             0 22px 54px rgba(34,211,238,.18),
+             0 12px 32px rgba(2,4,16,.55) !important;
+}
+
+/* ---- উপরে গ্রেডিয়েন্ট অ্যাকসেন্ট লাইন (যেগুলোতে আগে ছিল না) ---- */
+.problem-card::after,.diff-card::after,.niche-card::after,.price-card::after,
+.process-card::after,.cs-card::after,.work-item::after,.proof-stat::after,
+.stat::after,.faq-item::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--grad);transform:scaleX(0);transform-origin:left;
+  transition:transform .45s cubic-bezier(.2,.7,.3,1);
+  border-radius:2px 2px 0 0;pointer-events:none;z-index:2;
+}
+.problem-card:hover::after,.diff-card:hover::after,.niche-card:hover::after,
+.price-card:hover::after,.process-card:hover::after,.cs-card:hover::after,
+.work-item:hover::after,.proof-stat:hover::after,.stat:hover::after,
+.faq-item:hover::after{transform:scaleX(1)}
+
+/* কার্ডগুলোর ভেতরের কনটেন্ট যেন লাইনের নিচে চাপা না পড়ে */
+.problem-card,.diff-card,.niche-card,.price-card,.process-card,
+.cs-card,.work-item,.proof-stat,.stat,.faq-item{overflow:hidden}
+
+/* ---- ছোট এলিমেন্ট: চিপ ও বাটন ---- */
+.tool-chip,.niche-pill,.hero-badge{
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),border-color .3s ease,
+             color .3s ease,box-shadow .3s ease;
+}
+.tool-chip:hover,.niche-pill:hover{
+  transform:translateY(-4px);
+  border-color:rgba(34,211,238,.55);color:var(--accent-2);
+  box-shadow:0 8px 22px rgba(34,211,238,.22);
+}
+
+/* ---- বাটনেও নিয়ন আভা ---- */
+.btn-ghost:hover{
+  border-color:rgba(34,211,238,.6) !important;color:var(--accent-2);
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(34,211,238,.22);
+}
+
+/* ---- সোশ্যাল আইকন ---- */
+.socials a{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease,color .3s ease}
+.socials a:hover{
+  transform:translateY(-4px);border-color:rgba(34,211,238,.5);
+  color:var(--accent-2);box-shadow:0 8px 20px rgba(34,211,238,.25);
+}
+
+/* ---- টিম ও প্রোফাইল ছবিতে সূক্ষ্ম গ্লো ---- */
+.team-photo{transition:transform .4s ease,box-shadow .4s ease}
+.team-card:hover .team-photo{transform:scale(1.05);box-shadow:0 0 26px rgba(34,211,238,.32)}
+
+/* ---- মোবাইলে টাচ করলেও একই ইফেক্ট (:active) ---- */
+@media(hover:none){
+  .stat:active,.problem-card:active,.diff-card:active,.service-card:active,
+  .niche-card:active,.price-card:active,.process-card:active,.cs-card:active,
+  .work-item:active,.team-card:active,.proof-stat:active,.cap-card:active,
+  .faq-item:active{
+    transform:translateY(-5px);
+    border-color:rgba(34,211,238,.45) !important;
+    box-shadow:0 0 0 1px rgba(34,211,238,.32),
+               0 16px 40px rgba(34,211,238,.20) !important;
+  }
+  .problem-card:active::after,.diff-card:active::after,.niche-card:active::after,
+  .price-card:active::after,.process-card:active::after,.cs-card:active::after,
+  .work-item:active::after,.proof-stat:active::after,.stat:active::after,
+  .faq-item:active::after{transform:scaleX(1)}
+}
+
+/* ---- অ্যানিমেশন কম চাইলে ---- */
+@media(prefers-reduced-motion:reduce){
+  .stat,.problem-card,.diff-card,.service-card,.niche-card,.price-card,
+  .process-card,.cs-card,.work-item,.team-card,.proof-stat,.cap-card,
+  .faq-item,.tool-chip,.socials a,.team-photo{transition:none !important}
+  .stat:hover,.problem-card:hover,.diff-card:hover,.service-card:hover,
+  .niche-card:hover,.price-card:hover,.process-card:hover,.cs-card:hover,
+  .work-item:hover,.team-card:hover,.proof-stat:hover,.cap-card:hover,
+  .faq-item:hover{transform:none}
+}
+
 </style>
 </head>
 <body>
@@ -1733,6 +1971,89 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
   </div>
 </section>
 
+<!-- ================= TURNKEY CAPABILITIES ================= -->
+<section id="capabilities">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="pulse"></span> Turnkey Acquisition Engine</span>
+      <h2>Everything We Deploy To Fill Your Calendar With <span>High-Paying Jobs</span></h2>
+      <p>We don't just run ads and hope for the best. We engineer a complete, server-tracked customer acquisition machine inside your own Business Manager.</p>
+    </div>
+
+    <div class="cap-grid">
+
+      <div class="cap-card reveal">
+        <div class="cap-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Server-Side CAPI &amp; Pixel Engineering</h3>
+        <p>Zero data loss. We install server-side Meta Conversion API (CAPI) and custom conversion triggers (Lead, Schedule, Contact) to recover the iOS signals most accounts silently lose.</p>
+        <ul class="cap-list">
+          <li>Server-side tracking setup (GTM or Meta CAPI)</li>
+          <li>Event deduplication &amp; match-quality tuning</li>
+          <li>100% tracking transparency in your account</li>
+        </ul>
+      </div>
+
+      <div class="cap-card reveal d1">
+        <div class="cap-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        <h3>3:2:2 Dynamic Creative Testing</h3>
+        <p>We battle-test 3 video hooks, 2 high-converting copy angles and 2 strong offers at once — forcing Meta's algorithm to find your lowest-cost customer combination.</p>
+        <ul class="cap-list">
+          <li>High-ticket direct-response copy</li>
+          <li>Native reel &amp; on-site video angles</li>
+          <li>Systematic elimination of ad fatigue</li>
+        </ul>
+      </div>
+
+      <div class="cap-card reveal d2">
+        <div class="cap-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <h3>1-Click Mobile Instant Lead Funnels</h3>
+        <p>No slow page loads. We capture verified homeowners and high-ticket patients in under 30 seconds using in-app forms with custom qualifying questions.</p>
+        <ul class="cap-list">
+          <li>Pre-qualified homeowner verification</li>
+          <li>Instant email dispatch to your team</li>
+          <li>Zero landing-page bounce drop-off</li>
+        </ul>
+      </div>
+
+      <div class="cap-card reveal">
+        <div class="cap-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M21 13a9 9 0 1 1-3-6.7L21 8"/></svg></div>
+        <h3>7-Day Hyper-Local Retargeting Loop</h3>
+        <p>90% of customers don't buy on day one. We deploy a 7-day loop of video testimonial and social-proof ads that follow every visitor until they book.</p>
+        <ul class="cap-list">
+          <li>Video reviews &amp; transformation proof</li>
+          <li>Limited-time seasonal offer hooks</li>
+          <li>Far higher conversion on the same spend</li>
+        </ul>
+      </div>
+
+      <div class="cap-card reveal d1">
+        <div class="cap-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <h3>Call Tracking &amp; 1-Page Weekly ROI Dashboard</h3>
+        <p>Complete clarity on every dollar spent. We connect call tracking (CallRail or similar) and deliver a concise one-page weekly report showing booked jobs and revenue.</p>
+        <ul class="cap-list">
+          <li>Dynamic phone-call attribution</li>
+          <li>Cost per booked job — not per click</li>
+          <li>Month-to-month rolling engagement</li>
+        </ul>
+      </div>
+
+      <div class="cap-card reveal d2">
+        <div class="cap-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h3>You Own Everything — Account, Pixel &amp; Data</h3>
+        <p>We join your Business Manager as a partner, never the owner. Your ad account, pixel, audiences and lead data stay yours — on day one and on the day we part ways.</p>
+        <ul class="cap-list">
+          <li>Partner access — you keep full ownership</li>
+          <li>We never ask for your personal login</li>
+          <li>No long-term contract, no exit hostage</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="cap-note reveal">Every capability above runs <strong>inside your own Business Manager</strong> — you approve, we execute, and you keep the account.</p>
+  </div>
+</section>
+
 <!-- ================= PRICING ================= -->
 <section id="pricing">
   <div class="container">
@@ -1879,7 +2200,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
         </div>
         <div class="cs-media work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work2.webp" type="image/webp"><img style="aspect-ratio:0.9708" src="work2.jpg" alt="Facebook Ads - Website Purchases — 3,147 orders" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - Website Purchases — 3,147 orders" width="1165" height="1200"></picture>
+          <picture><source srcset="work2.webp" type="image/webp"><img style="aspect-ratio:0.9708" src="work2.jpg" alt="Facebook Ads - Website Purchases — 3,147 orders" class="work-img" decoding="async" data-cap="Facebook Ads - Website Purchases — 3,147 orders" width="1165" height="1200" fetchpriority="low"></picture>
         </div>
       </div>
 
@@ -1895,7 +2216,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
         </div>
         <div class="cs-media work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work1.webp" type="image/webp"><img style="aspect-ratio:1.4035" src="work1.jpg" alt="Facebook Ads - Messaging Campaign — 7,641 conversations" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - Messaging Campaign — 7,641 conversations" width="1200" height="855"></picture>
+          <picture><source srcset="work1.webp" type="image/webp"><img style="aspect-ratio:1.4035" src="work1.jpg" alt="Facebook Ads - Messaging Campaign — 7,641 conversations" class="work-img" decoding="async" data-cap="Facebook Ads - Messaging Campaign — 7,641 conversations" width="1200" height="855" fetchpriority="low"></picture>
         </div>
       </div>
 
@@ -1912,7 +2233,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
         </div>
         <div class="cs-media work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work13.webp" type="image/webp"><img style="aspect-ratio:0.7367" src="work13.jpg" alt="Shopify Report - 30-Day Channels — $28,326.56, +20%" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Report - 30-Day Channels — $28,326.56, +20%" width="884" height="1200"></picture>
+          <picture><source srcset="work13.webp" type="image/webp"><img style="aspect-ratio:0.7367" src="work13.jpg" alt="Shopify Report - 30-Day Channels — $28,326.56, +20%" class="work-img" decoding="async" data-cap="Shopify Report - 30-Day Channels — $28,326.56, +20%" width="884" height="1200" fetchpriority="low"></picture>
         </div>
       </div>
 
@@ -1928,7 +2249,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
         </div>
         <div class="cs-media work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work12.webp" type="image/webp"><img style="aspect-ratio:0.8125" src="work12.jpg" alt="Pinterest Ads - Profit Report — +283% net profit" class="work-img" loading="lazy" decoding="async" data-cap="Pinterest Ads - Profit Report — +283% net profit" width="975" height="1200"></picture>
+          <picture><source srcset="work12.webp" type="image/webp"><img style="aspect-ratio:0.8125" src="work12.jpg" alt="Pinterest Ads - Profit Report — +283% net profit" class="work-img" decoding="async" data-cap="Pinterest Ads - Profit Report — +283% net profit" width="975" height="1200" fetchpriority="low"></picture>
         </div>
       </div>
 
@@ -1948,7 +2269,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-grid"><div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work3.webp" type="image/webp"><img style="aspect-ratio:0.7775" src="work3.jpg" alt="Facebook Ads - 5.1K Purchases — $7.85K spent" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - 5.1K Purchases" width="933" height="1200"></picture>
+          <picture><source srcset="work3.webp" type="image/webp"><img style="aspect-ratio:0.7775" src="work3.jpg" alt="Facebook Ads - 5.1K Purchases — $7.85K spent" class="work-img" decoding="async" data-cap="Facebook Ads - 5.1K Purchases" width="933" height="1200" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">Facebook Ads - 5.1K Purchases</div>
@@ -1958,7 +2279,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work4.webp" type="image/webp"><img style="aspect-ratio:1.3072" src="work4.jpg" alt="Facebook Ads - Daily Active Sales — 17 purchases today" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - Daily Active Sales" width="1200" height="918"></picture>
+          <picture><source srcset="work4.webp" type="image/webp"><img style="aspect-ratio:1.3072" src="work4.jpg" alt="Facebook Ads - Daily Active Sales — 17 purchases today" class="work-img" decoding="async" data-cap="Facebook Ads - Daily Active Sales" width="1200" height="918" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">Facebook Ads - Daily Active Sales</div>
@@ -1968,7 +2289,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work5.webp" type="image/webp"><img style="aspect-ratio:0.8275" src="work5.jpg" alt="Facebook Ads - Sales Campaign — 135 purchases" class="work-img" loading="lazy" decoding="async" data-cap="Facebook Ads - Sales Campaign" width="993" height="1200"></picture>
+          <picture><source srcset="work5.webp" type="image/webp"><img style="aspect-ratio:0.8275" src="work5.jpg" alt="Facebook Ads - Sales Campaign — 135 purchases" class="work-img" decoding="async" data-cap="Facebook Ads - Sales Campaign" width="993" height="1200" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">Facebook Ads - Sales Campaign</div>
@@ -1978,7 +2299,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work6.webp" type="image/webp"><img style="aspect-ratio:1.039" src="work6.jpg" alt="Shopify Report - Daily Sales — $4,555.64 today" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Report - Daily Sales" width="1200" height="1155"></picture>
+          <picture><source srcset="work6.webp" type="image/webp"><img style="aspect-ratio:1.039" src="work6.jpg" alt="Shopify Report - Daily Sales — $4,555.64 today" class="work-img" decoding="async" data-cap="Shopify Report - Daily Sales" width="1200" height="1155" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">Shopify Report - Daily Sales</div>
@@ -1988,7 +2309,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work7.webp" type="image/webp"><img style="aspect-ratio:1.2793" src="work7.jpg" alt="Shopify Report - 2-Day Sales — $12,221.14 in 2 days" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Report - 2-Day Sales" width="1200" height="938"></picture>
+          <picture><source srcset="work7.webp" type="image/webp"><img style="aspect-ratio:1.2793" src="work7.jpg" alt="Shopify Report - 2-Day Sales — $12,221.14 in 2 days" class="work-img" decoding="async" data-cap="Shopify Report - 2-Day Sales" width="1200" height="938" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">Shopify Report - 2-Day Sales</div>
@@ -1998,7 +2319,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work8.webp" type="image/webp"><img style="aspect-ratio:1.4201" src="work8.jpg" alt="Pinterest Ads - ROAS Report — 117% ROAS" class="work-img" loading="lazy" decoding="async" data-cap="Pinterest Ads - ROAS Report" width="1200" height="845"></picture>
+          <picture><source srcset="work8.webp" type="image/webp"><img style="aspect-ratio:1.4201" src="work8.jpg" alt="Pinterest Ads - ROAS Report — 117% ROAS" class="work-img" decoding="async" data-cap="Pinterest Ads - ROAS Report" width="1200" height="845" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">Pinterest Ads - ROAS Report</div>
@@ -2008,7 +2329,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work9.webp" type="image/webp"><img style="aspect-ratio:0.5983" src="work9.jpg" alt="Shopify Live View - Real-Time Orders — live sales tracking" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Live View - Real-Time Orders" width="718" height="1200"></picture>
+          <picture><source srcset="work9.webp" type="image/webp"><img style="aspect-ratio:0.5983" src="work9.jpg" alt="Shopify Live View - Real-Time Orders — live sales tracking" class="work-img" decoding="async" data-cap="Shopify Live View - Real-Time Orders" width="718" height="1200" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">Shopify Live View - Real-Time Orders</div>
@@ -2018,7 +2339,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work10.webp" type="image/webp"><img style="aspect-ratio:1.227" src="work10.jpg" alt="Shopify Report - Yesterday Orders — 12 orders, 4.72% conv." class="work-img" loading="lazy" decoding="async" data-cap="Shopify Report - Yesterday Orders" width="1200" height="978"></picture>
+          <picture><source srcset="work10.webp" type="image/webp"><img style="aspect-ratio:1.227" src="work10.jpg" alt="Shopify Report - Yesterday Orders — 12 orders, 4.72% conv." class="work-img" decoding="async" data-cap="Shopify Report - Yesterday Orders" width="1200" height="978" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">Shopify Report - Yesterday Orders</div>
@@ -2028,7 +2349,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work11.webp" type="image/webp"><img style="aspect-ratio:1.1893" src="work11.jpg" alt="Shopify Report - 90-Day Sales — $14,480.37, 435 orders" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Report - 90-Day Sales" width="1200" height="1009"></picture>
+          <picture><source srcset="work11.webp" type="image/webp"><img style="aspect-ratio:1.1893" src="work11.jpg" alt="Shopify Report - 90-Day Sales — $14,480.37, 435 orders" class="work-img" decoding="async" data-cap="Shopify Report - 90-Day Sales" width="1200" height="1009" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">Shopify Report - 90-Day Sales</div>
@@ -2038,7 +2359,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work14.webp" type="image/webp"><img style="aspect-ratio:1.4528" src="work14.jpg" alt="Shopify Dashboard - Orders — 37 orders today" class="work-img" loading="lazy" decoding="async" data-cap="Shopify Dashboard - Orders" width="1200" height="826"></picture>
+          <picture><source srcset="work14.webp" type="image/webp"><img style="aspect-ratio:1.4528" src="work14.jpg" alt="Shopify Dashboard - Orders — 37 orders today" class="work-img" decoding="async" data-cap="Shopify Dashboard - Orders" width="1200" height="826" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">Shopify Dashboard - Orders</div>
@@ -2048,7 +2369,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="work-item">
         <div class="work-media">
           <span class="zoom-hint"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></span>
-          <picture><source srcset="work15.webp" type="image/webp"><img style="aspect-ratio:1.9512" src="work15.jpg" alt="MrWatch.to - E-Commerce Website — watch store website" class="work-img" loading="lazy" decoding="async" data-cap="MrWatch.to - E-Commerce Website" width="1200" height="615"></picture>
+          <picture><source srcset="work15.webp" type="image/webp"><img style="aspect-ratio:1.9512" src="work15.jpg" alt="MrWatch.to - E-Commerce Website — watch store website" class="work-img" decoding="async" data-cap="MrWatch.to - E-Commerce Website" width="1200" height="615" fetchpriority="low"></picture>
         </div>
         <div class="work-cap">
           <div class="wc-title">MrWatch.to - E-Commerce Website</div>
@@ -2112,7 +2433,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="team-card reveal">
         <div class="team-photo-wrap">
           <span class="team-initial">B</span>
-          <picture><source srcset="profile.webp" type="image/webp"><img src="profile.jpg" alt="Syed Sazzad Hossain (Bappy) — Founder &amp; Lead Digital Marketer, MIR Digital Agency" class="team-photo" loading="lazy" decoding="async" onerror="this.style.display='none'" width="900" height="900"></picture>
+          <picture><source srcset="profile.webp" type="image/webp"><img src="profile.jpg" alt="Syed Sazzad Hossain (Bappy) — Founder &amp; Lead Digital Marketer, MIR Digital Agency" class="team-photo" decoding="async" onerror="this.style.display='none'" width="900" height="900" fetchpriority="low"></picture>
         </div>
         <h3>Syed Sazzad Hossain (Bappy)</h3>
         <span class="team-role">Founder &amp; Ads Lead</span>
@@ -2121,7 +2442,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="team-card reveal d1">
         <div class="team-photo-wrap">
           <span class="team-initial">A</span>
-          <picture><source srcset="team1.webp" type="image/webp"><img src="team1.jpg" alt="Md Arif Hossain — video editor and YouTube SEO specialist at MIR Digital Agency" class="team-photo" loading="lazy" decoding="async" onerror="this.style.display='none'" width="1024" height="1024"></picture>
+          <picture><source srcset="team1.webp" type="image/webp"><img src="team1.jpg" alt="Md Arif Hossain — video editor and YouTube SEO specialist at MIR Digital Agency" class="team-photo" decoding="async" onerror="this.style.display='none'" width="1024" height="1024" fetchpriority="low"></picture>
         </div>
         <h3>Md Arif Hossain</h3>
         <span class="team-role">Video Editor &amp; YouTube SEO Specialist</span>
@@ -2130,7 +2451,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="team-card reveal d2">
         <div class="team-photo-wrap">
           <span class="team-initial">M</span>
-          <picture><source srcset="team2.webp" type="image/webp"><img src="team2.jpg" alt="Mahmudul Hasan — web developer, designer and SEO specialist at MIR Digital Agency" class="team-photo" loading="lazy" decoding="async" onerror="this.style.display='none'" width="512" height="512"></picture>
+          <picture><source srcset="team2.webp" type="image/webp"><img src="team2.jpg" alt="Mahmudul Hasan — web developer, designer and SEO specialist at MIR Digital Agency" class="team-photo" decoding="async" onerror="this.style.display='none'" width="512" height="512" fetchpriority="low"></picture>
         </div>
         <h3>Mahmudul Hasan</h3>
         <span class="team-role">Web Developer, Designer &amp; SEO Specialist</span>
@@ -2139,7 +2460,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
       <div class="team-card reveal d3">
         <div class="team-photo-wrap">
           <span class="team-initial">I</span>
-          <picture><source srcset="team3.webp" type="image/webp"><img src="team3.jpg" alt="Md Ahmad Imran — graphic designer at MIR Digital Agency" class="team-photo" loading="lazy" decoding="async" onerror="this.style.display='none'" width="512" height="512"></picture>
+          <picture><source srcset="team3.webp" type="image/webp"><img src="team3.jpg" alt="Md Ahmad Imran — graphic designer at MIR Digital Agency" class="team-photo" decoding="async" onerror="this.style.display='none'" width="512" height="512" fetchpriority="low"></picture>
         </div>
         <h3>Md Ahmad Imran</h3>
         <span class="team-role">Graphic Designer Specialist</span>
@@ -2159,7 +2480,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
     </div>
     <div class="spot-card reveal">
       <div class="spot-photo-wrap">
-        <picture><source srcset="client-izach.webp" type="image/webp"><img src="client-izach.jpg" alt="Izach Porter — Founder, Lifestyle Edge Art" class="spot-photo" loading="lazy" decoding="async" width="800" height="800"></picture>
+        <picture><source srcset="client-izach.webp" type="image/webp"><img src="client-izach.jpg" alt="Izach Porter — Founder, Lifestyle Edge Art" class="spot-photo" decoding="async" width="800" height="800" fetchpriority="low"></picture>
         <span class="spot-badge">Real Client</span>
       </div>
       <div class="spot-body">
@@ -2388,7 +2709,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
 <!-- ================= LIGHTBOX (ছবি জুম) ================= -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <button class="lb-close" id="lbClose" aria-label="Close">×</button>
-  <img id="lbImg" src="" alt="Meta ads campaign result screenshot — MIR Digital Agency">
+  <img id="lbImg" src="" alt="Meta ads campaign result screenshot — MIR Digital Agency" fetchpriority="low">
   <div class="lb-caption" id="lbCaption"></div>
 </div>
 
