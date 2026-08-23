@@ -698,6 +698,10 @@ header.scrolled{box-shadow:0 12px 34px rgba(2,4,14,.55)}
 .socials svg{width:18px;height:18px}
 /* hero visual */
 .hero-visual{display:flex;justify-content:center;position:relative}
+/* ⚠️ চিপ .hero-visual এর সাপেক্ষে বসে — তাই এটিকে বৃত্তের মাপেই সীমিত রাখি,
+   নইলে চওড়া স্ক্রিনে (ট্যাবলেট) চিপ কিনারায় ছিটকে যায় */
+.hero-visual{width:min(430px,92vw);margin-inline:auto}
+.hero-visual .avatar-ring{position:relative}
 .avatar-ring{
   width:min(340px,78vw);aspect-ratio:1;border-radius:50%;padding:3px;background:var(--grad);
   box-shadow:0 30px 80px rgba(99,102,241,.35);position:relative;
@@ -720,12 +724,15 @@ header.scrolled{box-shadow:0 12px 34px rgba(2,4,14,.55)}
   background:rgba(18,22,43,.97);border:1px solid var(--border-strong);
   border-radius:14px;padding:11px 16px;font-size:.8rem;font-weight:600;box-shadow:var(--shadow);
   animation:float 5.5s ease-in-out infinite;
+  /* ⚠️ avatar-img এর z-index:1 — চিপ তার উপরে না থাকলে লেখা ঢাকা পড়ে */
+  z-index:2;white-space:nowrap;
 }
 .float-chip .chip-ico{width:32px;height:32px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff}
 .float-chip small{display:block;font-weight:400;color:var(--muted);font-size:.68rem}
-.chip-1{top:6%;left:-30px}
-.chip-2{bottom:10%;right:-34px;animation-delay:-2.6s}
-.chip-3{bottom:-4%;left:8%;animation-delay:-1.3s}
+/* চিপ বৃত্তের (avatar-ring) সাপেক্ষে — তাই সব স্ক্রিনে একই দূরত্বে থাকে */
+.chip-1{top:5%;left:0}
+.chip-2{bottom:14%;right:0;animation-delay:-2.6s}
+.chip-3{bottom:-2%;left:6%;animation-delay:-1.3s}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:70px;position:relative;z-index:1}
@@ -1183,6 +1190,12 @@ footer .f-seo strong{color:rgba(203,213,255,.85);font-weight:600}
 }
 @media(max-width:1024px){
   .hero-grid{grid-template-columns:1fr;text-align:center;gap:44px}
+  /* এক-কলাম হলেই ছবি উপরে — আগে এটি শুধু 768px এ ছিল, তাই 769–1024px এ ছবি নিচে চলে যেত */
+  .hero-visual{order:-1;margin-bottom:6px}
+  /* চিপ বৃত্তের কাছেই রাখা (আগে কিনারায় ছিটকে যেত) */
+  .chip-1{top:3%;left:0}
+  .chip-2{bottom:14%;right:0}
+  .chip-3{bottom:-2%;left:5%}
   .stats{grid-template-columns:repeat(4,1fr);gap:12px}
   .stat .num{font-size:1.6rem}
   #home p.lead{margin-left:auto;margin-right:auto}
@@ -1206,14 +1219,15 @@ footer .f-seo strong{color:rgba(203,213,255,.85);font-weight:600}
   .hero-grid{gap:26px}
   .hero-visual{order:-1;margin-bottom:4px}
   .avatar-ring{width:min(260px,68vw)}
+  .hero-visual{width:min(340px,94vw)}
   .avatar-inner .big-b{font-size:5.2rem}
   .float-chip{padding:8px 12px;font-size:.66rem;border-radius:11px}
   .float-chip .chip-ico{width:26px;height:26px;border-radius:7px}
   .float-chip small{font-size:.58rem}
   .float-chip{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(16,20,40,.97)}
-  .chip-1{top:-4%;left:-2px}
-  .chip-2{bottom:14%;right:-2px}
-  .chip-3{bottom:-7%;left:6%}
+  .chip-1{top:4%;left:0}
+  .chip-2{bottom:16%;right:0}
+  .chip-3{bottom:-1%;left:3%}
   #home h1{font-size:clamp(1.62rem,7.2vw,2.1rem);line-height:1.22}
   #home p.lead{font-size:.95rem}
   .contact-form{padding:26px 18px}
@@ -1222,8 +1236,8 @@ footer .f-seo strong{color:rgba(203,213,255,.85);font-weight:600}
   .services-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
-  .chip-1{left:-2px}
-  .chip-2{right:-2px}
+  .chip-1{left:0}
+  .chip-2{right:0}
   .stats{grid-template-columns:repeat(2,1fr);gap:14px;margin-top:44px}
   .stat .num{font-size:1.5rem}
   .hero-actions{flex-direction:column;align-items:center}
@@ -1265,6 +1279,7 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
   .stat .num{font-size:1.35rem}
   .stat .label{font-size:.74rem}
   .avatar-ring{width:min(210px,60vw)}
+  .hero-visual{width:min(300px,96vw)}
   .hero-badge{font-size:.72rem;padding:6px 12px}
   .sec-head h2{font-size:1.5rem}
   .service-card{padding:24px 18px}
