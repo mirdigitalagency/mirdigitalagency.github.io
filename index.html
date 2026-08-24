@@ -825,7 +825,7 @@ header.scrolled{box-shadow:0 12px 34px rgba(2,4,14,.55)}
 }
 .lightbox.open{display:flex}
 .lightbox img{
-  max-width:min(1100px,94vw);max-height:80vh;border-radius:14px;border:1px solid var(--border-strong);
+  width:auto;height:auto;max-width:min(1100px,94vw);max-height:80vh;border-radius:14px;border:1px solid var(--border-strong);
   box-shadow:0 30px 90px rgba(0,0,0,.7);animation:lbIn .3s ease;
 }
 @keyframes lbIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
@@ -1782,6 +1782,448 @@ footer .legal-links button{padding:11px 6px;min-height:44px}
 .about-list .k,.about-list .v{font-size:.84rem}
 .cap-list li{font-size:.86rem}
 
+
+/* ============================================================
+   SOP-09 · AUDIT SHOWCASE (3D preview stack + founder badge)
+   ============================================================ */
+.audit-showcase{
+  position:relative;width:min(430px,92vw);margin-inline:auto;
+  padding:14px 0 96px;
+}
+.audit-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;margin:0 auto 42px;
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(34,211,238,.07);
+  border:1px solid rgba(34,211,238,.24);padding:7px 14px;border-radius:99px;
+}
+.audit-stage{
+  position:relative;width:100%;height:480px;
+  perspective:1200px;perspective-origin:52% 44%;
+}
+/* soft brand glows */
+.audit-stage::before,.audit-stage::after{
+  content:"";position:absolute;border-radius:50%;pointer-events:none;filter:blur(46px);z-index:0;
+}
+.audit-stage::before{top:-6%;right:-12%;width:230px;height:230px;background:rgba(34,211,238,.20)}
+.audit-stage::after{bottom:2%;left:-14%;width:250px;height:250px;background:rgba(139,92,246,.20)}
+
+.audit-page{
+  position:absolute;top:0;left:50%;width:288px;
+  border-radius:22px;overflow:hidden;transform-style:preserve-3d;backface-visibility:hidden;
+  border:1px solid rgba(148,163,255,.20);
+  box-shadow:0 26px 60px rgba(2,4,16,.55), 0 6px 18px rgba(2,4,16,.4);
+  will-change:transform;
+}
+.audit-page img{display:block;width:100%;height:auto}
+
+/* back → middle → front */
+.audit-page.p3{
+  z-index:1;opacity:.62;
+  transform:translateX(-50%) translate(48px,2px) rotate(7deg) scale(.92);
+  filter:saturate(.85) brightness(.9);
+}
+.audit-page.p2{
+  z-index:2;opacity:.84;
+  transform:translateX(-50%) translate(25px,14px) rotate(3.5deg) scale(.96);
+  filter:saturate(.93) brightness(.96);
+}
+.audit-page.p1{
+  z-index:3;
+  transform:translateX(-50%) rotateY(-7deg) rotateX(2deg) rotateZ(-1deg);
+  box-shadow:0 0 0 1px rgba(34,211,238,.20),
+             0 34px 74px rgba(2,4,16,.62),
+             0 10px 26px rgba(34,211,238,.14);
+  animation:auditFloat 7s ease-in-out infinite;
+}
+@keyframes auditFloat{
+  0%,100%{transform:translateX(-50%) rotateY(-7deg) rotateX(2deg) rotateZ(-1deg) translateY(0)}
+  50%    {transform:translateX(-50%) rotateY(-7deg) rotateX(2deg) rotateZ(-1deg) translateY(-6px)}
+}
+/* edge light */
+.audit-page.p1::after{
+  content:"";position:absolute;inset:0;border-radius:22px;pointer-events:none;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),transparent 42%,transparent 68%,rgba(139,92,246,.16));
+}
+/* small label on the mockup */
+.audit-tag{
+  position:absolute;top:-28px;left:50%;transform:translateX(-50%) translateX(-6px);
+  z-index:4;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:#fff;background:var(--grad);padding:6px 13px;border-radius:99px;white-space:nowrap;
+  box-shadow:0 8px 20px rgba(99,102,241,.42);
+}
+/* founder trust badge */
+.founder-badge{
+  position:absolute;left:0;bottom:6px;z-index:5;
+  display:flex;align-items:center;gap:12px;
+  background:rgba(16,20,40,.94);border:1px solid rgba(148,163,255,.24);
+  border-radius:16px;padding:11px 16px 11px 11px;
+  box-shadow:0 16px 40px rgba(2,4,16,.6);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  max-width:min(330px,96%);
+}
+.founder-badge .fb-ring{
+  width:66px;height:66px;border-radius:50%;padding:2px;background:var(--grad);flex:0 0 auto;
+}
+.founder-badge .fb-ring img{
+  width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:var(--bg-2);
+}
+.founder-badge .fb-txt{min-width:0}
+.founder-badge b{display:block;font-size:.86rem;font-weight:700;color:var(--text);line-height:1.3}
+.founder-badge small{display:block;font-size:.7rem;color:var(--muted);margin-top:3px;line-height:1.4}
+.founder-badge .fb-org{
+  display:inline-flex;align-items:center;gap:6px;margin-top:5px;
+  font-size:.63rem;font-weight:600;color:var(--accent-2);
+}
+.founder-badge .fb-org i{width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block}
+
+/* CTA hierarchy */
+.hero-actions .btn-tertiary,.hero-links .btn-tertiary{
+  background:none;border:none;padding:0;color:var(--muted);
+  font-size:.86rem;font-weight:600;text-decoration:underline;text-underline-offset:4px;
+  min-height:44px;display:inline-flex;align-items:center;
+}
+.hero-actions .btn-tertiary:hover,.hero-links .btn-tertiary:hover{color:var(--accent-2)}
+.hero-links{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;margin:-18px 0 30px}
+
+/* ---------- SOP-10 · Colorful "Preview" button + tapping finger ---------- */
+#auditPreviewBtn{
+  position:relative;overflow:visible;
+  color:#fff;border:1px solid transparent;
+  background:
+    linear-gradient(#0d1024,#0d1024) padding-box,
+    linear-gradient(135deg,#22d3ee 0%,#6366f1 50%,#8b5cf6 100%) border-box;
+  box-shadow:0 8px 24px rgba(34,211,238,.20);
+}
+#auditPreviewBtn .apb-label{
+  position:relative;z-index:2;
+  background:linear-gradient(135deg,#67e8f9 0%,#a5b4fc 50%,#c4b5fd 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  font-weight:700;
+}
+/* ভেতরের নরম গ্রেডিয়েন্ট আভা */
+#auditPreviewBtn::before{
+  content:"";position:absolute;inset:0;border-radius:99px;z-index:0;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(139,92,246,.18));
+  opacity:.9;
+}
+/* চলমান শাইন */
+#auditPreviewBtn::after{
+  content:"";position:absolute;top:0;left:-40%;width:35%;height:100%;z-index:1;
+  border-radius:99px;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);
+  animation:apbShine 3.4s ease-in-out infinite;
+}
+@keyframes apbShine{0%{left:-45%}55%{left:125%}100%{left:125%}}
+#auditPreviewBtn:hover,#auditPreviewBtn:focus-visible{
+  transform:translateY(-3px);
+  border-color:transparent !important;
+  box-shadow:0 14px 34px rgba(99,102,241,.42),0 0 0 1px rgba(34,211,238,.25);
+}
+#auditPreviewBtn:hover::before{opacity:1}
+/* বাটনের চারপাশে পালস রিং */
+#auditPreviewBtn .apb-ring{
+  position:absolute;inset:0;border-radius:99px;pointer-events:none;z-index:0;
+  border:1px solid rgba(34,211,238,.55);
+  animation:apbPulse 2.6s ease-out infinite;
+}
+@keyframes apbPulse{
+  0%{transform:scale(1);opacity:.55}
+  70%{transform:scale(1.10);opacity:0}
+  100%{transform:scale(1.10);opacity:0}
+}
+/* ট্যাপ করতে থাকা আঙুল */
+.apb-finger{
+  position:absolute;right:6px;bottom:-14px;z-index:5;
+  width:34px;height:34px;pointer-events:none;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.55));
+  animation:apbTap 1.9s cubic-bezier(.34,1.4,.64,1) infinite;
+  transform-origin:70% 10%;
+}
+.apb-finger svg{display:block;width:100%;height:100%}
+@keyframes apbTap{
+  0%,100%{transform:translate(0,0) rotate(-8deg)}
+  18%{transform:translate(-4px,-9px) rotate(-14deg)}
+  34%{transform:translate(0,0) rotate(-8deg)}
+  46%{transform:translate(-2px,-5px) rotate(-11deg)}
+  60%,100%{transform:translate(0,0) rotate(-8deg)}
+}
+/* আঙুলের নিচে ট্যাপ রিপল */
+.apb-finger i{
+  position:absolute;left:-2px;top:-4px;width:20px;height:20px;border-radius:50%;
+  border:2px solid rgba(34,211,238,.8);opacity:0;
+  animation:apbRipple 1.9s ease-out infinite;
+}
+@keyframes apbRipple{
+  0%{transform:scale(.3);opacity:0}
+  20%{transform:scale(.35);opacity:.85}
+  48%{transform:scale(1.5);opacity:0}
+  100%{transform:scale(1.5);opacity:0}
+}
+@media (max-width:520px){
+  .apb-finger{width:30px;height:30px;right:2px;bottom:-12px}
+}
+@media (prefers-reduced-motion:reduce){
+  #auditPreviewBtn::after,#auditPreviewBtn .apb-ring,.apb-finger,.apb-finger i{
+    animation-name:none !important;
+  }
+  .apb-finger{opacity:.9}
+}
+
+/* ---------- modal ---------- */
+#auditPreviewModal{
+  position:fixed;inset:0;z-index:2200;display:none;
+  align-items:center;justify-content:center;padding:18px;
+  background:rgba(4,6,15,.94);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
+}
+#auditPreviewModal.open{display:flex;animation:apFade .26s ease}
+@keyframes apFade{from{opacity:0}to{opacity:1}}
+.ap-box{
+  background:var(--card-2);border:1px solid rgba(34,211,238,.26);border-radius:18px;
+  width:min(560px,100%);max-height:94vh;display:flex;flex-direction:column;
+  box-shadow:0 0 0 1px rgba(34,211,238,.14),0 30px 70px rgba(2,4,16,.75);
+  animation:apUp .32s cubic-bezier(.2,.7,.3,1);
+}
+@keyframes apUp{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+.ap-head{display:flex;align-items:flex-start;gap:12px;padding:18px 18px 12px}
+.ap-head h3{font-size:1.06rem;font-weight:700;line-height:1.35;margin:0;flex:1}
+.ap-head p{font-size:.76rem;color:var(--muted);margin:4px 0 0}
+.ap-close{
+  background:none;border:none;color:var(--muted);font-size:1.7rem;line-height:1;cursor:pointer;
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  border-radius:10px;font-family:inherit;flex:0 0 auto;
+}
+.ap-close:hover{color:#fff;background:rgba(148,163,255,.1)}
+.ap-tabs{display:flex;gap:8px;padding:0 18px 12px}
+.ap-tabs button{
+  flex:1;min-height:44px;border-radius:11px;cursor:pointer;font-family:inherit;
+  font-size:.8rem;font-weight:700;color:var(--muted);
+  background:rgba(148,163,255,.07);border:1px solid var(--border);transition:all .25s ease;
+}
+.ap-tabs button[aria-selected="true"]{
+  background:var(--grad);color:#fff;border-color:transparent;
+  box-shadow:0 6px 18px rgba(99,102,241,.4);
+}
+.ap-view{
+  flex:1;min-height:0;overflow:auto;padding:0 18px;
+  display:flex;align-items:flex-start;justify-content:center;
+}
+.ap-view img{
+  width:100%;height:auto;max-width:440px;border-radius:12px;
+  border:1px solid rgba(148,163,255,.18);box-shadow:0 18px 40px rgba(2,4,16,.5);
+}
+.ap-foot{
+  padding:14px 18px 18px;border-top:1px solid var(--border);margin-top:14px;
+  font-size:.74rem;color:var(--muted);line-height:1.6;
+}
+.ap-foot a{color:var(--accent-2);font-weight:600}
+
+/* ---------- responsive ---------- */
+@media(max-width:1099px){
+  .audit-showcase{width:min(380px,92vw);padding-bottom:92px}
+  .audit-stage{height:436px}
+  .audit-page{width:262px}
+}
+@media(max-width:768px){
+  .audit-showcase{width:min(340px,92vw);padding:8px 0 92px}
+  .audit-stage{height:400px}
+  .audit-page{width:238px;border-radius:18px}
+  /* 3D offsets reduced ~40% */
+  .audit-page.p3{transform:translateX(-50%) translate(28px,1px) rotate(4.2deg) scale(.93)}
+  .audit-page.p2{transform:translateX(-50%) translate(15px,8px) rotate(2.1deg) scale(.965)}
+  .audit-page.p1{border-radius:18px}
+  .founder-badge{padding:9px 13px 9px 9px;gap:10px;border-radius:14px;max-width:100%}
+  .founder-badge .fb-ring{width:56px;height:56px}
+  .founder-badge b{font-size:.8rem}
+  .founder-badge small{font-size:.66rem}
+  .ap-view img{max-width:100%}
+}
+@media(max-width:390px){
+  .audit-showcase{width:min(310px,94vw);padding-bottom:88px}
+  .audit-stage{height:372px}
+  .audit-page{width:218px}
+  .founder-badge .fb-ring{width:52px;height:52px}
+  .founder-badge b{font-size:.76rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .audit-page.p1{animation:none}
+  .audit-page,.ap-box,#auditPreviewModal{transition:none;animation:none}
+}
+
+/* ===================================================================
+   SOP-11 · LEGIBILITY LAYER  (50+ বয়সীদের জন্য পাঠযোগ্যতা)
+   ডিজাইন, রঙ, লেআউট অপরিবর্তিত — শুধু আকার, ব্যবধান ও স্পষ্টতা
+   =================================================================== */
+
+/* 1 · বেস — কোনো টেক্সট যেন ১৬px-এর নিচে না নামে */
+body{ font-size:16.5px; line-height:1.75; letter-spacing:.002em; }
+
+/* 2 · অনুচ্ছেদ ও তালিকা — মূল পড়ার টেক্সট */
+p, li, .lead, .sec-head p, .faq-a, .svc-card p, .cap-card p,
+.cs-body p, .why-card p, .prob-card p, .step p, .team-card p,
+.niche-card p, .price-card li, .exp-card p{
+  font-size:1.02rem; line-height:1.78;
+}
+.lead{ font-size:1.12rem; line-height:1.8; }
+
+/* 3 · ছোট সহায়ক টেক্সট — আগে ১০–১৩px ছিল, এখন ন্যূনতম ১৪.৫px */
+small, .muted, figcaption, .cs-lab, .team-role, .period,
+.cs-cat, .kicker, .chip, .tag, .badge-sm, .fb-org,
+.founder-badge small, .lb-caption, .form-note, label,
+.price-card .p-note, .trust-points li{
+  font-size:.92rem !important; line-height:1.62;
+}
+
+/* 4 · বাটন ও নেভিগেশন — চোখে পড়ার মতো */
+.btn{ font-size:1rem; letter-spacing:.005em; }
+.nav-links a{ font-size:.98rem; }
+.mob-bar a{ font-size:.86rem !important; font-weight:700; }
+.work-more-btn, .more-btn, .faq-more-btn{ font-size:1rem; }
+
+/* 5 · হেডিং — শ্রেণিবিন্যাস ঠিক রেখে সামান্য বড় ও স্পষ্ট */
+h2{ letter-spacing:-.01em; }
+h3{ font-size:1.16rem; line-height:1.42; }
+h4{ font-size:1.04rem; line-height:1.45; }
+.sec-head h2{ font-size:clamp(1.9rem,3.6vw,2.55rem); line-height:1.24; }
+.sec-head p{ font-size:1.04rem; line-height:1.72; }
+
+/* 6 · ফর্ম — ইনপুট ১৬px+ (iOS-এ অটো-জুম বন্ধ হয়) */
+input, textarea, select{
+  font-size:16px !important; line-height:1.6;
+}
+label{ font-weight:600; }
+
+/* 7 · FAQ ও অ্যাকর্ডিয়ন */
+.faq-q{ font-size:1.04rem; line-height:1.5; }
+.faq-a, .faq-a p{ font-size:1rem; line-height:1.78; }
+
+/* 8 · হিরো — মোবাইলে খুব বেশি ছোট হওয়া ঠেকানো */
+#home h1{ line-height:1.18; letter-spacing:-.015em; }
+
+/* 9 · আপার-কেস লেবেলে বাড়তি ফাঁক (বড় হরফ ঘন থাকলে পড়া কঠিন) */
+.kicker, .audit-eyebrow, .audit-tag, .pop-tag, .spot-badge, .hero-badge{
+  letter-spacing:.09em;
+}
+.audit-eyebrow{ font-size:.8rem !important; }
+.audit-tag{ font-size:.72rem !important; }
+.pop-tag, .spot-badge{ font-size:.76rem !important; }
+.hero-badge{ font-size:.86rem; }
+.fb-org{ font-size:.78rem !important; }
+.founder-badge b{ font-size:1rem !important; }
+.founder-badge small{ font-size:.86rem !important; }
+
+/* 10 · টিকার — চলমান লেখা বড় ও ধীর হলে পড়া সহজ */
+.ticker{ height:42px; }
+.ticker-item, .ticker-item b{ font-size:.92rem !important; }
+
+/* 11 · টেবিল ও মেট্রিক */
+.cs-num{ letter-spacing:-.01em; }
+.cs-lab{ font-size:.9rem !important; }
+
+/* ---------- ট্যাবলেট ---------- */
+@media(max-width:1024px){
+  body{ font-size:16.5px; }
+  .lead{ font-size:1.08rem; }
+  h3{ font-size:1.14rem; }
+}
+
+/* ---------- মোবাইল ---------- */
+@media(max-width:768px){
+  body{ font-size:16.5px; line-height:1.78; }
+  p, li, .faq-a, .svc-card p, .cap-card p, .cs-body p,
+  .why-card p, .prob-card p, .step p, .niche-card p{
+    font-size:1.04rem; line-height:1.8;
+  }
+  .lead{ font-size:1.08rem; line-height:1.82; }
+  .sec-head h2{ font-size:clamp(1.65rem,6.4vw,2.1rem); line-height:1.28; }
+  .sec-head p{ font-size:1.02rem; }
+  h3{ font-size:1.14rem; }
+  .btn{ font-size:1rem; padding:15px 26px; }
+  small, .muted, .cs-lab, .team-role, .period, .cs-cat{
+    font-size:.94rem !important;
+  }
+  .trust-points li{ font-size:1rem !important; }
+  .mob-bar a{ font-size:.84rem !important; }
+  .ticker-item, .ticker-item b{ font-size:.9rem !important; }
+}
+
+/* ---------- ছোট মোবাইল ---------- */
+@media(max-width:390px){
+  body{ font-size:16px; }
+  .sec-head h2{ font-size:clamp(1.55rem,7vw,1.95rem); }
+  .btn{ font-size:.96rem; padding:14px 20px; }
+  .mob-bar a{ font-size:.8rem !important; }
+}
+
+/* 12 · ব্যবহারকারী ব্রাউজারে ফন্ট বড় করলে যেন ভাঙে না */
+@media(min-width:1440px){
+  body{ font-size:17px; }
+  .lead{ font-size:1.15rem; }
+}
+
+/* 13 · অবশিষ্ট ছোট টেক্সট — সর্বনিম্ন সীমা প্রয়োগ */
+.spot-role, .spot-note, .spot-quote-src, .spot-badge,
+.am-kicker, .ap-foot, .proof-disclaimer, .pop-tag,
+.cs-lab, .wm-label, .st-lab, .stat-lab, .cap-tag,
+.n-tag, .badge, .pill, .note, .disclaimer, .fine-print{
+  font-size:.9rem !important; line-height:1.65 !important;
+}
+.ap-head p, .ap-foot{ font-size:.95rem !important; line-height:1.7 !important; }
+.ap-tabs button{ font-size:1rem !important; }
+.lb-caption{ font-size:1rem !important; line-height:1.6 !important; }
+.spot-note, .proof-disclaimer{ line-height:1.7 !important; }
+strong, b{ font-weight:700; }
+.audit-eyebrow{ font-size:.82rem !important; }
+.audit-tag{ font-size:.74rem !important; }
+
+/* 14 · footer ও nav ছোট লিংক */
+footer .f-nav a, footer p, footer small, footer li{
+  font-size:.96rem !important; line-height:1.7 !important;
+}
+
+/* 15 · সর্বজনীন নিরাপত্তা জাল — কোথাও যেন ১১px-এর নিচে না থাকে */
+span, div, a, li, td, th, dd, dt{ font-size:inherit; }
+
+/* 16 · চূড়ান্ত পাস — নাম ধরে ধরে অবশিষ্ট প্রতিটি ছোট টেক্সট */
+.cap-list li,
+.work-cap .wc-sub,
+.tools-wrap .tool-chip,
+.niche-card p,
+li .k, li .v,
+.flow-line span,
+.highlights .highlight-pill,
+.row .pct,
+.stat .label,
+.proof-stat .proof-label,
+.final-cta-benefits span,
+.price-card .for,
+.tl-card .org,
+.spot-links a,
+.am-trust span,
+.hero-links .btn-tertiary,
+.f-seo strong,
+.legal-links button,
+.am-alt a,
+.hero-industries,
+.pricing-note, .pricing-note b,
+.fb-txt small{
+  font-size:.94rem !important; line-height:1.66 !important;
+}
+.hero-badge{ font-size:.9rem !important; }
+.fb-org{ font-size:.82rem !important; }
+.audit-eyebrow{ font-size:.84rem !important; }
+.audit-tag{ font-size:.76rem !important; }
+.cap-list li{ line-height:1.72 !important; }
+.niche-card p{ line-height:1.75 !important; }
+
+/* 17 · ছোট মোবাইলে চিপ/পিল যেন না উপচায় */
+@media(max-width:390px){
+  .tools-wrap .tool-chip, .highlights .highlight-pill{
+    font-size:.9rem !important;
+  }
+  .audit-tag{ font-size:.72rem !important; }
+}
+
 </style>
 </head>
 <body>
@@ -1843,9 +2285,12 @@ footer .legal-links button{padding:11px 6px;min-height:44px}
       <h1>Digital Marketer &amp; <span class="name">Meta Marketing Expert</span> Who Turns Ads Into Booked Jobs &amp; Sales</h1>
       <p class="lead">I am <strong>Syed Sazzad Hossain (Bappy)</strong> — a digital marketer and Meta marketing expert leading MIR Digital Agency. My team builds, manages and optimises Facebook &amp; Instagram ad campaigns — backed by SEO and web design — that generate qualified leads, booked appointments and measurable sales, not vanity metrics.</p>
       <div class="hero-actions">
-        <a href="https://calendly.com/mirdigitalagency/30min" target="_blank" rel="noopener" class="btn btn-primary">📅 Book a Free Audit Call</a>
-        <a href="#contact" class="btn btn-ghost">Get My Free 2-Minute Ad Audit</a>
-        <a href="#results" class="btn btn-ghost">See Our Results</a>
+        <a href="#contact" class="btn btn-primary">Get My Free 2-Minute Ad Audit</a>
+        <button type="button" class="btn btn-ghost" id="auditPreviewBtn"><span class="apb-ring" aria-hidden="true"></span><span class="apb-label">Preview the 3-Page Audit</span><span class="apb-finger" aria-hidden="true"><i></i><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 27V11.5a3.5 3.5 0 1 1 7 0V24" stroke="#22d3ee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="#12162b"/><path d="M27 24v-2.2a3 3 0 0 1 6 0V24" stroke="#8b5cf6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="#12162b"/><path d="M33 24v-1a3 3 0 0 1 6 0v10.5c0 5.8-4.4 10.5-10 10.5h-2.6c-3.2 0-6.2-1.6-8-4.3l-5.6-8.4a3.2 3.2 0 0 1 1.1-4.5 3.2 3.2 0 0 1 4.2 1L20 31" stroke="#a5b4fc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="#12162b"/></svg></span></button>
+      </div>
+      <div class="hero-links">
+        <a href="https://calendly.com/mirdigitalagency/30min" target="_blank" rel="noopener" class="btn-tertiary">📅 Book a Free Audit Call</a>
+        <a href="#results" class="btn-tertiary">See verified results →</a>
       </div>
       <ul class="trust-points">
         <li>Founder-led strategy</li>
@@ -1870,29 +2315,36 @@ footer .legal-links button{padding:11px 6px;min-height:44px}
       </div>
     </div>
 
-    <div class="hero-visual">
-      <div class="avatar-ring">
-        <div class="avatar-inner">
-          <!-- 📸 আপনার ছবি: profile.jpg নামে ফাইল রাখলেই এখানে অটো দেখাবে -->
-          <picture><source srcset="profile.webp" type="image/webp"><img src="profile.jpg" alt="Syed Sazzad Hossain (Bappy) — digital marketer and Meta marketing expert, founder of MIR Digital Agency" class="avatar-img" fetchpriority="high" decoding="async" onerror="this.style.display='none'" width="900" height="900"></picture>
-          <span class="big-b">B</span>
-          <small>Bappy</small>
+    <div class="audit-showcase">
+      <span class="audit-eyebrow">See the audit format before you book</span>
+
+      <div class="audit-stage">
+        <span class="audit-tag">3-Page Executive Audit</span>
+
+        <div class="audit-page p3">
+          <img src="audit-preview-page-3.webp" alt="Audit page 3 preview — realistic three-step action plan" width="900" height="1165" decoding="async" loading="eager">
         </div>
-<div class="float-chip chip-1">
-        <span class="chip-ico">🏠</span>
-        <span>Niche<small>Your market</small></span>
-      </div>
-      <div class="float-chip chip-2">
-        <span class="chip-ico">🎯</span>
-        <span>Channel<small>Meta ads only</small></span>
-      </div>
-      <div class="float-chip chip-3">
-        <span class="chip-ico">📹</span>
-        <span>Start here<small>Free 2-min audit</small></span>
+        <div class="audit-page p2">
+          <img src="audit-preview-page-2.webp" alt="Audit page 2 preview — what the evidence shows" width="900" height="1165" decoding="async" loading="eager">
+        </div>
+        <div class="audit-page p1">
+          <img src="audit-preview-page-1.webp"
+               alt="Sample three-page MIR Digital Agency Meta acquisition and conversion audit preview"
+               width="900" height="1165" fetchpriority="high" decoding="async" loading="eager">
+        </div>
+
+        <div class="founder-badge">
+          <span class="fb-ring">
+            <picture><source srcset="profile.webp" type="image/webp"><img src="profile.jpg" alt="Syed Sazzad Hossain (Bappy), founder of MIR Digital Agency" width="900" height="900" decoding="async"></picture>
+          </span>
+          <span class="fb-txt">
+            <b>Founder-reviewed by Bappy</b>
+            <small>Buyer-specific • Evidence-led • 3 pages</small>
+            <span class="fb-org"><i></i>MIR Digital Agency</span>
+          </span>
+        </div>
       </div>
     </div>
-      </div>
-      
   </div>
 
   <div class="container">
@@ -2127,11 +2579,11 @@ footer .legal-links button{padding:11px 6px;min-height:44px}
       <div class="cap-card reveal">
         <div class="cap-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
         <h3>Server-Side CAPI &amp; Pixel Engineering</h3>
-        <p>Zero data loss. We install server-side Meta Conversion API (CAPI) and custom conversion triggers (Lead, Schedule, Contact) to recover the iOS signals most accounts silently lose.</p>
+        <p>Improve signal coverage. We install server-side Meta Conversion API (CAPI) and custom conversion triggers (Lead, Schedule, Contact) to help recover iOS signals many accounts silently lose.</p>
         <ul class="cap-list">
           <li>Server-side tracking setup (GTM or Meta CAPI)</li>
           <li>Event deduplication &amp; match-quality tuning</li>
-          <li>100% tracking transparency in your account</li>
+          <li>Transparent event mapping in your account</li>
         </ul>
       </div>
 
@@ -2142,7 +2594,7 @@ footer .legal-links button{padding:11px 6px;min-height:44px}
         <ul class="cap-list">
           <li>High-ticket direct-response copy</li>
           <li>Native reel &amp; on-site video angles</li>
-          <li>Systematic elimination of ad fatigue</li>
+          <li>Systematic testing to reduce ad fatigue</li>
         </ul>
       </div>
 
@@ -2153,7 +2605,7 @@ footer .legal-links button{padding:11px 6px;min-height:44px}
         <ul class="cap-list">
           <li>Pre-qualified homeowner verification</li>
           <li>Instant email dispatch to your team</li>
-          <li>Zero landing-page bounce drop-off</li>
+          <li>Less landing-page friction before booking</li>
         </ul>
       </div>
 
@@ -2391,9 +2843,7 @@ footer .legal-links button{padding:11px 6px;min-height:44px}
 
 
     <!-- ===== MORE RESULTS GALLERY ===== -->
-    <div class="more-results reveal">
-    </div>
-      <button class="work-more-btn" id="workMoreBtn" type="button">
+      <button class="work-more-btn" id="workMoreBtn" type="button" aria-expanded="false" aria-controls="moreResults">
         <span class="wm-label">Show 12 More Results</span>
         <svg class="wm-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
       </button>
@@ -2789,7 +3239,7 @@ footer .legal-links button{padding:11px 6px;min-height:44px}
         <p>Name, email, and your Facebook page or website. We reply within 24 hours.</p>
         <form id="contactForm" action="https://formspree.io/f/xbgrkddr" method="POST">
           <!-- spam trap — humans never see this field -->
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="text" name="_gotcha" aria-label="Leave this field empty" aria-hidden="true" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <div class="form-group">
               <label for="fName">Your Name *</label>
@@ -2879,7 +3329,7 @@ footer .legal-links button{padding:11px 6px;min-height:44px}
 <!-- ================= LIGHTBOX (ছবি জুম) ================= -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <button class="lb-close" id="lbClose" aria-label="Close">×</button>
-  <img id="lbImg" src="" alt="Meta ads campaign result screenshot — MIR Digital Agency" fetchpriority="low">
+  <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Meta ads campaign result screenshot — MIR Digital Agency" fetchpriority="low">
   <div class="lb-caption" id="lbCaption"></div>
 </div>
 
@@ -3171,6 +3621,7 @@ if (workMoreBtn) {
     expanded = !expanded;
     if (moreContent) { if (expanded) loadDeferred(moreContent); moreContent.classList.toggle('open', expanded); }
     workMoreBtn.classList.toggle('open', expanded);
+    workMoreBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     wmLabel.textContent = expanded ? 'Show Less' : 'Show 12 More Results';
   });
 }
@@ -3517,7 +3968,7 @@ document.head.appendChild(s1);
     <p class="am-sub">Send your page — we reply within 24 hours with what is holding your ads back. No cost, no obligation.</p>
 
     <form id="auditForm" action="https://formspree.io/f/xbgrkddr" method="POST">
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="text" name="_gotcha" aria-label="Leave this field empty" aria-hidden="true" style="display:none" tabindex="-1" autocomplete="off">
       <input type="hidden" name="_subject" value="Free 2-minute ad audit request (quick form)">
       <div class="form-group">
         <label for="amName">Your Name *</label>
@@ -3546,6 +3997,68 @@ document.head.appendChild(s1);
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
+
+/* ============ AUDIT PREVIEW MODAL (SOP-09) ============ */
+(function(){
+  var modal=document.getElementById('auditPreviewModal');
+  var box=modal?modal.querySelector('.ap-box'):null;
+  var trigger=document.getElementById('auditPreviewBtn');
+  var img=document.getElementById('apImg');
+  var panel=document.getElementById('apPanel');
+  var closeBtn=document.getElementById('apClose');
+  if(!modal||!trigger||!img) return;
+  var tabs=[document.getElementById('apTab1'),document.getElementById('apTab2'),document.getElementById('apTab3')];
+  var ALT=['Sample audit page 1 — buyer-specific technical X-ray cover',
+           'Sample audit page 2 — what the evidence shows',
+           'Sample audit page 3 — a realistic three-step path forward'];
+  var lastFocus=null;
+
+  function select(n){
+    tabs.forEach(function(t,i){ if(t) t.setAttribute('aria-selected', i===n?'true':'false'); });
+    img.src='audit-preview-page-'+(n+1)+'.webp';
+    img.alt=ALT[n];
+    if(panel&&tabs[n]) panel.setAttribute('aria-labelledby',tabs[n].id);
+  }
+  function open(){
+    lastFocus=document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    select(0);
+    setTimeout(function(){ if(closeBtn) closeBtn.focus(); },110);
+    if(typeof gaTrack==='function') gaTrack('audit_preview_open');
+  }
+  function close(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(lastFocus&&lastFocus.focus) lastFocus.focus();
+  }
+  trigger.addEventListener('click',open);
+  if(closeBtn) closeBtn.addEventListener('click',close);
+  modal.addEventListener('click',function(e){ if(e.target===modal) close(); });
+  tabs.forEach(function(t,i){ if(t) t.addEventListener('click',function(){ select(i); }); });
+
+  document.addEventListener('keydown',function(e){
+    if(!modal.classList.contains('open')) return;
+    if(e.key==='Escape'){ close(); return; }
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+      var cur=tabs.findIndex(function(t){return t&&t.getAttribute('aria-selected')==='true';});
+      if(cur>-1){
+        var nx=(e.key==='ArrowRight')?(cur+1)%3:(cur+2)%3;
+        select(nx); if(tabs[nx]) tabs[nx].focus(); e.preventDefault();
+      }
+    }
+    if(e.key==='Tab'){
+      var f=box.querySelectorAll('button');
+      if(!f.length) return;
+      var first=f[0], last=f[f.length-1];
+      if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+
 /* ============ ⚡ QUICK AUDIT MODAL ============ */
 (function(){
   var modal = document.getElementById('auditModal');
@@ -3622,5 +4135,32 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 </script>
+
+<!-- ================= AUDIT PREVIEW MODAL (SOP-09) ================= -->
+<div id="auditPreviewModal" role="dialog" aria-modal="true" aria-labelledby="apTitle" aria-hidden="true">
+  <div class="ap-box">
+    <div class="ap-head">
+      <div>
+        <h3 id="apTitle">3-Page Executive Audit — sample format</h3>
+        <p>Preview the structure we use. Nothing here is a real buyer's audit.</p>
+      </div>
+      <button type="button" class="ap-close" id="apClose" aria-label="Close preview">&times;</button>
+    </div>
+
+    <div class="ap-tabs" role="tablist" aria-label="Audit sample pages">
+      <button type="button" role="tab" id="apTab1" aria-selected="true"  aria-controls="apPanel">Page 1</button>
+      <button type="button" role="tab" id="apTab2" aria-selected="false" aria-controls="apPanel">Page 2</button>
+      <button type="button" role="tab" id="apTab3" aria-selected="false" aria-controls="apPanel">Page 3</button>
+    </div>
+
+    <div class="ap-view" id="apPanel" role="tabpanel" aria-labelledby="apTab1">
+      <img id="apImg" src="audit-preview-page-1.webp"
+           alt="Sample audit page 1 — buyer-specific technical X-ray cover"
+           width="900" height="1165" decoding="async">
+    </div>
+
+    <p class="ap-foot">This is a sample layout. Personalized findings are prepared only after a live evidence review.</p>
+  </div>
+</div>
 </body>
 </html>
