@@ -1,4 +1,4 @@
-# MIR Digital Agency — https://mirdigitalagency.github.io
+# MIR Digital Agency — https://mirdigitalagency.com
 # Digital marketer & Meta marketing expert — Syed Sazzad Hossain (Bappy)
 
 User-agent: *
@@ -20,5 +20,5 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-Sitemap: https://mirdigitalagency.github.io/sitemap.xml
-Sitemap: https://mirdigitalagency.github.io/image-sitemap.xml
+Sitemap: https://mirdigitalagency.com/sitemap.xml
+Sitemap: https://mirdigitalagency.com/image-sitemap.xml
