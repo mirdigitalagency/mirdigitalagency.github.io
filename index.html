@@ -1462,6 +1462,13 @@ iframe[title="chat widget"]{ z-index:1005 !important; }
 /* ============ HERO TRUST POINTS + INDUSTRIES ============ */
 .trust-points{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 26px;margin:0 0 16px;max-width:560px}
 .trust-points li{color:var(--muted);font-size:.92rem;display:flex;align-items:flex-start;gap:9px}
+/* ============ PROOF BAR (v9 engagement) ============ */
+.proof-bar{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px;max-width:560px}
+.proof-item{flex:1 1 150px;display:flex;flex-direction:column;gap:2px;padding:10px 14px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent-2);border-radius:12px;text-decoration:none;transition:transform .18s ease,border-color .18s ease}
+.proof-item:hover{transform:translateY(-2px);border-color:var(--border-strong)}
+.proof-item strong{color:var(--text);font-size:.95rem;font-weight:700;white-space:nowrap}
+.proof-item span{color:var(--muted);font-size:.76rem}
+@media(max-width:520px){.proof-item{flex:1 1 100%}}
 .trust-points li::before{content:"\2713";color:#22c55e;font-weight:700}
 .hero-industries{color:var(--muted);font-size:.85rem;letter-spacing:.02em;margin-bottom:26px}
 
@@ -2369,6 +2376,152 @@ li .k, li .v,
   .audit-eyebrow{margin-bottom:16px}
 }
 
+/* ===================================================================
+   SOP-14 · BUYER REVIEWS SLIDER
+   =================================================================== */
+#reviews{padding-top:10px}
+.rv-wrap{position:relative;max-width:900px;margin:0 auto}
+.rv-viewport{overflow:hidden;border-radius:var(--radius)}
+.rv-track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1);will-change:transform}
+.rv-slide{min-width:100%;padding:4px}
+
+.rv-card{
+  background:linear-gradient(160deg,var(--card) 0%,var(--card-2) 100%);
+  border:1px solid var(--border);border-radius:var(--radius);
+  padding:34px 34px 28px;position:relative;overflow:hidden;
+  transition:border-color .3s ease,box-shadow .3s ease;
+}
+.rv-card::before{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:var(--radius);
+  background:linear-gradient(135deg,rgba(139,92,246,.06),transparent 45%,rgba(34,211,238,.06));
+}
+.rv-card:hover{border-color:rgba(34,211,238,.4);box-shadow:0 14px 38px rgba(34,211,238,.14)}
+
+.rv-quote-mark{
+  position:absolute;top:10px;right:26px;font-size:5rem;line-height:1;
+  font-weight:800;color:rgba(139,92,246,.14);pointer-events:none;user-select:none;
+}
+.rv-stars{display:flex;gap:3px;margin-bottom:14px;position:relative;z-index:1}
+.rv-stars svg{width:18px;height:18px;fill:#fbbf24}
+.rv-text{
+  font-size:1.05rem;line-height:1.8;color:var(--text);
+  margin-bottom:22px;position:relative;z-index:1;
+}
+.rv-person{display:flex;align-items:center;gap:14px;position:relative;z-index:1}
+.rv-avatar{
+  width:54px;height:54px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;padding:0;
+  font-weight:800;font-size:1.15rem;color:#fff;
+  background:var(--grad);border:2px solid rgba(148,163,255,.3);
+}
+.rv-avatar img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 50%}
+.rv-meta{min-width:0}
+.rv-name{display:block;font-weight:700;font-size:1rem;color:var(--text);line-height:1.35}
+.rv-role{display:block;font-size:.9rem;color:var(--muted);margin-top:3px;line-height:1.45}
+.rv-tag{
+  display:inline-flex;align-items:center;gap:6px;margin-top:8px;
+  font-size:.78rem;font-weight:600;letter-spacing:.04em;
+  color:var(--accent-2);background:rgba(34,211,238,.08);
+  border:1px solid rgba(34,211,238,.22);padding:4px 11px;border-radius:99px;
+}
+.rv-tag i{width:5px;height:5px;border-radius:50%;background:#22c55e;display:inline-block}
+
+/* controls */
+.rv-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:24px}
+.rv-btn{
+  width:46px;height:46px;border-radius:50%;flex-shrink:0;
+  background:rgba(18,22,43,.9);border:1px solid var(--border-strong);
+  color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .3s ease;font-family:inherit;
+}
+.rv-btn:hover:not(:disabled){
+  border-color:var(--accent-2);color:var(--accent-2);
+  transform:translateY(-2px);box-shadow:0 8px 22px rgba(34,211,238,.2);
+}
+.rv-btn:disabled{opacity:.3;cursor:default}
+.rv-btn svg{width:19px;height:19px}
+.rv-dots{display:flex;gap:9px}
+.rv-dot{
+  width:9px;height:9px;border-radius:50%;padding:0;cursor:pointer;
+  background:rgba(148,163,255,.25);border:none;transition:all .3s ease;
+}
+.rv-dot.active{width:28px;border-radius:99px;background:var(--grad)}
+
+/* ============ REVIEW SUBMIT (v8 · buyer review form) ============ */
+.rv-cta{display:flex;justify-content:center;margin-top:18px;position:relative;z-index:1}
+.rv-cta .btn{font-size:.95rem;padding:12px 26px}
+#reviewModal{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(4,6,14,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#reviewModal.open{display:flex;animation:rmFade .26s ease}
+@keyframes rmFade{from{opacity:0}to{opacity:1}}
+.rm-box{width:100%;max-width:560px;max-height:92vh;overflow-y:auto;background:linear-gradient(160deg,var(--card) 0%,var(--card-2) 100%);border:1px solid var(--border-strong);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;position:relative}
+.rm-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:6px}
+.rm-head h3{font-size:1.3rem;margin:0 0 4px}
+.rm-head p{color:var(--muted);font-size:.92rem;margin:0;line-height:1.6}
+.rm-close{flex-shrink:0;width:38px;height:38px;border-radius:50%;border:1px solid var(--border-strong);background:transparent;color:var(--text);font-size:1.4rem;line-height:1;cursor:pointer;transition:border-color .25s ease}
+.rm-close:hover{border-color:var(--accent-2)}
+#reviewModal .form-group{margin-top:14px}
+.rm-stars{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:4px;margin-top:6px}
+.rm-stars input{position:absolute;opacity:0;width:1px;height:1px}
+.rm-stars label{font-size:2rem;line-height:1;color:#3d4460;cursor:pointer;transition:color .15s ease,transform .15s ease}
+.rm-stars label:hover,.rm-stars label:hover~label{color:#fbbf24;transform:scale(1.08)}
+.rm-stars input:checked~label{color:#fbbf24}
+.rm-stars input:focus-visible+label{outline:2px solid var(--accent-2);outline-offset:4px;border-radius:4px}
+.rm-check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:.85rem;color:var(--muted);line-height:1.6;cursor:pointer}
+.rm-check input{margin-top:4px;accent-color:#8b5cf6;width:16px;height:16px;flex-shrink:0}
+.rm-actions{margin-top:20px;display:flex;gap:12px}
+.rm-actions .btn{flex:1;justify-content:center}
+.rm-note{font-size:.82rem;color:var(--muted);margin-top:12px;line-height:1.6}
+@media(max-width:560px){.rm-box{padding:22px 18px}.rm-stars label{font-size:1.7rem}}
+@media (prefers-reduced-motion:reduce){#reviewModal.open{animation:none}.rm-stars label{transition:none}}
+
+.rv-dot:hover:not(.active){background:rgba(148,163,255,.5)}
+.rv-count{font-size:.9rem;color:var(--muted);font-weight:600;min-width:52px;text-align:center}
+/* --- Buyer Reviews — Project Preview (Fiverr → premium) --- */
+.rv-project{
+  margin-top:18px;position:relative;z-index:1;
+  border-radius:12px;overflow:hidden;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(14,17,32,.9),rgba(18,22,43,.92));
+  cursor:pointer;transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease;
+}
+.rv-project:hover{border-color:rgba(34,211,238,.38);transform:translateY(-2px);box-shadow:0 10px 28px rgba(34,211,238,.12)}
+.rv-project img{width:100%;height:172px;object-fit:cover;object-position:top center;display:block;filter:saturate(1.04) contrast(1.04)}
+.rv-project span{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:10px 12px;font-size:.83rem;font-weight:600;letter-spacing:.02em;
+  color:var(--muted);background:rgba(10,12,20,.55);border-top:1px solid var(--border);
+}
+.rv-project span i{font-style:normal;color:var(--accent-2)}
+@media(max-width:768px){.rv-project img{height:152px}}
+
+@media(max-width:768px){
+  .rv-card{padding:26px 22px 22px}
+  .rv-text{font-size:1rem;line-height:1.78}
+  .rv-quote-mark{font-size:3.6rem;top:6px;right:18px}
+  .rv-avatar{width:48px;height:48px;font-size:1rem}
+  .rv-nav{gap:14px;margin-top:20px}
+  .rv-btn{width:44px;height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+  .rv-track{transition:none}
+}
+
+/* SOP-14 fix · floating বাটন যেন slider control ঢেকে না দেয় */
+@media(max-width:1099px){
+  .rv-nav{
+    padding-right:76px;          /* ডানে চ্যাট বাবলের জায়গা ছাড়ি */
+    justify-content:flex-start;
+    padding-left:4px;
+  }
+}
+@media(max-width:480px){
+  .rv-nav{gap:10px;padding-right:72px}
+  .rv-count{min-width:44px;font-size:.86rem}
+  .rv-btn{width:42px;height:42px}
+  .rv-dot.active{width:24px}
+}
+
 </style>
 </head>
 <body>
@@ -2446,6 +2599,11 @@ li .k, li .v,
         <li>Weekly performance reporting</li>
         <li>No long-term contract</li>
       </ul>
+      <div class="proof-bar" aria-label="Verified proof">
+        <a href="#results" class="proof-item"><strong>10+ Live Results</strong><span>Real ad screenshots</span></a>
+        <a href="#reviews" class="proof-item"><strong>5 Verified Reviews</strong><span>From real buyers</span></a>
+        <a href="#contact" class="proof-item"><strong>24-Hour Reply</strong><span>To every message</span></a>
+      </div>
       <p class="hero-industries">Home Services · E-commerce · Dental · Local Businesses · Law Firms · Real Estate</p>
       <div class="socials">
         <a href="https://www.facebook.com/syedsazzadhossainDM" target="_blank" rel="noopener" aria-label="Facebook">
@@ -3258,6 +3416,134 @@ li .k, li .v,
   </div>
 </section>
 
+
+<!-- ================= BUYER REVIEWS — Premium Auto-Slide (Fiverr → Rephrased) ================= -->
+<section id="reviews">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Buyer Reviews</span>
+      <h2>What owners say <span>after the work</span></h2>
+      <p>Real feedback from businesses we have supported across the US and UK — rephrased for clarity, original meaning preserved. Project previews are enhanced for clarity only.</p>
+    </div>
+
+    <div class="rv-wrap reveal" id="rvWrap" role="region" aria-roledescription="carousel" aria-label="Buyer reviews">
+      <div class="rv-viewport">
+        <div class="rv-track" id="rvTrack">
+        <div class="rv-slide" role="group" aria-roledescription="slide" aria-label="Review 1 of 5">
+          <div class="rv-card">
+            <span class="rv-quote-mark" aria-hidden="true">&ldquo;</span>
+            <div class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg></div>
+            <p class="rv-text">Syed Sazzad was very professional and explained the whole process in detail. He answered every question I had, and I have another Shopify store that will be using his services again in the near future.</p>
+            <div class="rv-person">
+              <span class="rv-avatar"><img src="reviews/avatar-1.webp?v=4" alt="Kevin Miller" width="54" height="54" decoding="async" loading="lazy"></span>
+              <span class="rv-meta">
+                <span class="rv-name">Kevin Miller</span>
+                <span class="rv-role">United States · 3 days ago</span>
+                <span class="rv-tag"><i></i>Shopify Store · Google Presence</span>
+              </span>
+            </div>
+            <button class="rv-project" type="button" data-full="reviews/review-1-full.webp" aria-label="View project preview for Kevin Miller">
+              <img src="reviews/review-1-thumb.webp" alt="Shopify project preview — Unique Gift For Grandma sentimental monthly gift Google presence" loading="lazy" decoding="async" width="1322" height="774">
+              <span><i>↗</i> View project preview — Unique Gift For Grandma</span>
+            </button>
+          </div>
+        </div>
+        <div class="rv-slide" role="group" aria-roledescription="slide" aria-label="Review 2 of 5">
+          <div class="rv-card">
+            <span class="rv-quote-mark" aria-hidden="true">&ldquo;</span>
+            <div class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg></div>
+            <p class="rv-text">Amazing experience working with him. Highly recommend — fast, professional and the Digital Wealth Academy ads were delivered exactly as requested across Facebook and Instagram.</p>
+            <div class="rv-person">
+              <span class="rv-avatar"><img src="reviews/avatar-2.webp?v=4" alt="Jennifer Adams" width="54" height="54" decoding="async" loading="lazy"></span>
+              <span class="rv-meta">
+                <span class="rv-name">Jennifer Adams</span>
+                <span class="rv-role">United States · 1 month ago</span>
+                <span class="rv-tag"><i></i>Facebook & Instagram Ads</span>
+              </span>
+            </div>
+            <button class="rv-project" type="button" data-full="reviews/review-2-full.webp" aria-label="View project preview for Jennifer Adams">
+              <img src="reviews/review-2-thumb.webp" alt="Facebook and Instagram ad preview — DWA English LEARN BUILD EARN ONLINE" loading="lazy" decoding="async" width="1576" height="974">
+              <span><i>↗</i> View project preview — DWA English Campaign</span>
+            </button>
+          </div>
+        </div>
+        <div class="rv-slide" role="group" aria-roledescription="slide" aria-label="Review 3 of 5">
+          <div class="rv-card">
+            <span class="rv-quote-mark" aria-hidden="true">&ldquo;</span>
+            <div class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg></div>
+            <p class="rv-text">Will definitely work with Syed again. Super quick response and he understood the requirements perfectly — the FIFA World Cup Watch Party creatives were spot on.</p>
+            <div class="rv-person">
+              <span class="rv-avatar"><img src="reviews/avatar-3.webp?v=4" alt="Ashley Miller" width="54" height="54" decoding="async" loading="lazy"></span>
+              <span class="rv-meta">
+                <span class="rv-name">Ashley Miller</span>
+                <span class="rv-role">United States · 3 months ago</span>
+                <span class="rv-tag"><i></i>Meta Ads Design</span>
+              </span>
+            </div>
+            <button class="rv-project" type="button" data-full="reviews/review-3-full.webp" aria-label="View project preview for Ashley Miller">
+              <img src="reviews/review-3-thumb.webp" alt="FIFA World Cup Watch Party ad — Brazil vs Haiti by Gia Power Squad LLC" loading="lazy" decoding="async" width="1584" height="966">
+              <span><i>↗</i> View project preview — FIFA Watch Party</span>
+            </button>
+          </div>
+        </div>
+        <div class="rv-slide" role="group" aria-roledescription="slide" aria-label="Review 4 of 5">
+          <div class="rv-card">
+            <span class="rv-quote-mark" aria-hidden="true">&ldquo;</span>
+            <div class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg></div>
+            <p class="rv-text">Great experience working with Syed Sazzad. Communication was clear and the ad setup was very professional. He understood our local business needs and handled everything from targeting to optimization smoothly. We’re happy and will continue working with him.</p>
+            <div class="rv-person">
+              <span class="rv-avatar"><img src="reviews/avatar-4.webp?v=4" alt="James Wilson" width="54" height="54" decoding="async" loading="lazy"></span>
+              <span class="rv-meta">
+                <span class="rv-name">James Wilson</span>
+                <span class="rv-role">United Kingdom · 8 months ago</span>
+                <span class="rv-tag"><i></i>Facebook Ads · Local Business</span>
+              </span>
+            </div>
+            <button class="rv-project" type="button" data-full="reviews/review-4-full.webp" aria-label="View project preview for James Wilson">
+              <img src="reviews/review-4-thumb.webp" alt="Car Repair Facebook Ads Campaign preview on laptop and phone — DriveX mobile automotive" loading="lazy" decoding="async" width="2188" height="914">
+              <span><i>↗</i> View project preview — Car Repair Campaign</span>
+            </button>
+          </div>
+        </div>
+        <div class="rv-slide" role="group" aria-roledescription="slide" aria-label="Review 5 of 5">
+          <div class="rv-card">
+            <span class="rv-quote-mark" aria-hidden="true">&ldquo;</span>
+            <div class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.6.9-4.8 4.7 1.2 6.7L12 17.3 6.1 20.5l1.2-6.7L2.5 9.1l6.6-.9z"/></svg></div>
+            <p class="rv-text">If you want to scale your Instagram presence and actually see results from ads, look no further. Syed is a game-changer — deep strategy, strong data and he was always available to help. Highly recommend his work.</p>
+            <div class="rv-person">
+              <span class="rv-avatar"><img src="reviews/avatar-5.webp?v=4" alt="Robert Davies" width="54" height="54" decoding="async" loading="lazy"></span>
+              <span class="rv-meta">
+                <span class="rv-name">Robert Davies</span>
+                <span class="rv-role">United Kingdom · 4 months ago</span>
+                <span class="rv-tag"><i></i>Instagram Growth & Ads</span>
+              </span>
+            </div>
+            <button class="rv-project" type="button" data-full="reviews/review-5-full.webp" aria-label="View project preview for Robert Davies">
+              <img src="reviews/review-5-thumb.webp" alt="Instagram ad preview — Royal Wedding Cinema free pre-wedding shoot" loading="lazy" decoding="async" width="1992" height="966">
+              <span><i>↗</i> View project preview — Royal Wedding Cinema</span>
+            </button>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="rv-nav">
+        <button class="rv-btn" id="rvPrev" type="button" aria-label="Previous review">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div class="rv-dots" id="rvDots"><button class="rv-dot active" type="button" data-idx="0" aria-label="Go to review 1"></button><button class="rv-dot" type="button" data-idx="1" aria-label="Go to review 2"></button><button class="rv-dot" type="button" data-idx="2" aria-label="Go to review 3"></button><button class="rv-dot" type="button" data-idx="3" aria-label="Go to review 4"></button><button class="rv-dot" type="button" data-idx="4" aria-label="Go to review 5"></button></div>
+        <span class="rv-count" id="rvCount">1 / 5</span>
+        <button class="rv-btn" id="rvNext" type="button" aria-label="Next review">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="rv-cta">
+        <button class="btn btn-ghost" id="reviewWriteBtn" type="button">★ Worked with me? Share your experience</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= FAQ ================= -->
 <section id="faq" style="padding-bottom:40px">
   <div class="container">
@@ -3682,6 +3968,75 @@ contactForm.addEventListener('submit', async e => {
   sendBtn.textContent = 'Send my page — get the audit';
 });
 
+
+/* ============ REVIEW SUBMIT MODAL (v8) ============ */
+function initReviewModal(){
+  var modal=document.getElementById('reviewModal');
+  var trigger=document.getElementById('reviewWriteBtn');
+  var closeBtn=document.getElementById('rmClose');
+  var form=document.getElementById('reviewForm');
+  if(!modal||!trigger||!form) return;
+  var sendBtn=document.getElementById('rmSend');
+  var status=document.getElementById('rmStatus');
+  var lastFocus=null;
+  function open(){
+    lastFocus=document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    status.style.display='none';
+    setTimeout(function(){ var f=document.getElementById('rName'); if(f) f.focus(); },110);
+    if(typeof gaTrack==='function') gaTrack('review_form_open');
+  }
+  function close(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(lastFocus&&lastFocus.focus) lastFocus.focus();
+  }
+  trigger.addEventListener('click',open);
+  if(closeBtn) closeBtn.addEventListener('click',close);
+  modal.addEventListener('click',function(e){ if(e.target===modal) close(); });
+  document.addEventListener('keydown',function(e){
+    if(!modal.classList.contains('open')) return;
+    if(e.key==='Escape'){ close(); return; }
+    if(e.key==='Tab'){
+      var items=modal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+      items=Array.prototype.filter.call(items,function(el){ return !el.disabled && el.offsetParent!==null; });
+      if(!items.length) return;
+      var first=items[0], last=items[items.length-1];
+      if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+    }
+  });
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    sendBtn.disabled=true;
+    sendBtn.textContent='Sending...';
+    status.style.display='none';
+    try{
+      var res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+      if(res.ok){
+        if(typeof gaTrack==='function') gaTrack('review_submit');
+        status.className='form-note success';
+        status.textContent='Thank you! Your review was received -- it will appear here within 48 hours once approved.';
+        status.style.display='block';
+        form.reset();
+        setTimeout(close,3200);
+      }else{
+        var data=await res.json().catch(function(){return {};});
+        throw new Error((data.errors&&data.errors.map(function(x){return x.message;}).join(' '))||'Something went wrong');
+      }
+    }catch(err){
+      status.className='form-note error';
+      status.textContent='Message could not be sent. Please try again, or email mirdigitalagency@gmail.com';
+      status.style.display='block';
+    }
+    sendBtn.disabled=false;
+    sendBtn.textContent='Submit my review';
+  });
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initReviewModal);}else{initReviewModal();}
 
 /* ============ SMOOTH IMAGE FADE-IN ============ */
 document.querySelectorAll('img').forEach(img => {
@@ -4288,7 +4643,7 @@ document.addEventListener("DOMContentLoaded", function(){
   function guard(){
     var chat = document.getElementById('chatBtn');
     if(!chat) return;
-    var watch = ['#auditPreviewBtn', '.hero-actions .btn-primary', '.audit-eyebrow', '.audit-tag'];
+    var watch = ['#auditPreviewBtn', '.hero-actions .btn-primary', '.audit-eyebrow', '.audit-tag', '.rv-nav'];
     function hit(a,b){
       return !(a.right <= b.left || b.right <= a.left ||
                a.bottom <= b.top  || b.bottom <= a.top);
@@ -4328,6 +4683,107 @@ document.addEventListener("DOMContentLoaded", function(){
   } else { guard(); }
 })();
 
+
+/* ============ SOP-15 · BUYER REVIEWS SLIDER — Auto-slide (premium, keeps all prior controls) ============ */
+(function(){
+  var track = document.getElementById('rvTrack');
+  if(!track) return;
+  var slides = track.querySelectorAll('.rv-slide');
+  var total  = slides.length;
+  if(!total) return;
+
+  var prev  = document.getElementById('rvPrev');
+  var next  = document.getElementById('rvNext');
+  var count = document.getElementById('rvCount');
+  var dots  = [].slice.call(document.querySelectorAll('#rvDots .rv-dot'));
+  var wrap  = document.getElementById('rvWrap');
+  var idx = 0;
+  var auto = null;
+  var paused = false;
+
+  function render(){
+    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+    if(count) count.textContent = (idx + 1) + ' / ' + total;
+    dots.forEach(function(d, i){ d.classList.toggle('active', i === idx); });
+    slides.forEach(function(sl, i){
+      sl.setAttribute('aria-hidden', i === idx ? 'false' : 'true');
+      sl.querySelectorAll('a,button').forEach(function(el){
+        if(el.classList.contains('rv-project')) el.tabIndex = (i === idx) ? 0 : -1;
+        else if(el.closest('.rv-nav')) el.tabIndex = 0;
+        else el.tabIndex = (i === idx) ? 0 : -1;
+      });
+    });
+  }
+  function go(n){ idx = (n + total) % total; render(); }
+  function startAuto(){
+    if(paused) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    stopAuto();
+    auto = setInterval(function(){ go(idx + 1); }, 4200);
+  }
+  function stopAuto(){ if(auto){ clearInterval(auto); auto=null; } }
+
+  if(prev) prev.addEventListener('click', function(){ go(idx - 1); stopAuto(); startAuto(); });
+  if(next) next.addEventListener('click', function(){ go(idx + 1); stopAuto(); startAuto(); });
+  dots.forEach(function(d){
+    d.addEventListener('click', function(){ go(parseInt(d.dataset.idx, 10)); stopAuto(); startAuto(); });
+  });
+
+  if(wrap){
+    wrap.setAttribute('tabindex','0');
+    wrap.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowLeft'){  go(idx - 1); stopAuto(); startAuto(); e.preventDefault(); }
+      if(e.key === 'ArrowRight'){ go(idx + 1); stopAuto(); startAuto(); e.preventDefault(); }
+    });
+    wrap.addEventListener('mouseenter', function(){ paused=true; stopAuto(); });
+    wrap.addEventListener('mouseleave', function(){ paused=false; startAuto(); });
+    wrap.addEventListener('focusin', function(){ paused=true; stopAuto(); });
+    wrap.addEventListener('focusout', function(){ paused=false; startAuto(); });
+  }
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden) stopAuto(); else { paused=false; startAuto(); }
+  });
+
+  var x0 = null, y0 = null;
+  track.addEventListener('touchstart', function(e){
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+  }, {passive:true});
+  track.addEventListener('touchend', function(e){
+    if(x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    var dy = e.changedTouches[0].clientY - y0;
+    if(Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)){
+      go(dx < 0 ? idx + 1 : idx - 1); stopAuto(); startAuto();
+    }
+    x0 = null; y0 = null;
+  }, {passive:true});
+
+  var projModal = null;
+  function ensureProjModal(){
+    if(projModal) return projModal;
+    projModal = document.createElement('div');
+    projModal.id='rvProjModal';
+    projModal.style.cssText='position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(2,4,16,.72);backdrop-filter:blur(8px);';
+    projModal.innerHTML='<div style="position:relative;max-width:min(920px,94vw);max-height:92vh;overflow:auto;background:#0a0c14;border:1px solid rgba(148,163,255,.18);border-radius:16px;box-shadow:0 24px 64px rgba(0,0,0,.55)"><button id="rvProjClose" aria-label="Close" style="position:absolute;top:10px;right:10px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(148,163,255,.22);background:rgba(18,22,43,.9);color:#eef0f8;font-size:22px;cursor:pointer;z-index:2">&times;</button><img id="rvProjImg" alt="Project preview" style="display:block;width:100%;height:auto;border-radius:16px"></div>';
+    document.body.appendChild(projModal);
+    projModal.addEventListener('click', function(e){ if(e.target===projModal) closeProj(); });
+    document.getElementById('rvProjClose').addEventListener('click', closeProj);
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && projModal.style.display==='flex') closeProj(); });
+    return projModal;
+  }
+  function openProj(src){
+    var m=ensureProjModal(); var im=document.getElementById('rvProjImg');
+    im.src=src; m.style.display='flex'; document.body.style.overflow='hidden';
+    if(typeof gtag==='function') gtag('event','review_project_view',{project:src});
+  }
+  function closeProj(){ if(!projModal) return; projModal.style.display='none'; document.body.style.overflow=''; }
+  document.querySelectorAll('.rv-project').forEach(function(btn){
+    btn.addEventListener('click', function(){ openProj(btn.getAttribute('data-full')); });
+  });
+
+  render(); startAuto();
+})();
+
 </script>
 
 <!-- ================= AUDIT PREVIEW MODAL (SOP-09) ================= -->
@@ -4356,5 +4812,80 @@ document.addEventListener("DOMContentLoaded", function(){
     <p class="ap-foot">This is a sample layout. Personalized findings are prepared only after a live evidence review.</p>
   </div>
 </div>
+
+<!-- ================= REVIEW SUBMIT (v8) ================= -->
+<div id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="rmTitle" aria-hidden="true">
+  <div class="rm-box">
+    <div class="rm-head">
+      <div>
+        <h3 id="rmTitle">⭐ Share your experience</h3>
+        <p>Worked with MIR Digital Agency? Your honest review helps other owners decide. Approved reviews appear here with your first name + country.</p>
+      </div>
+      <button type="button" class="rm-close" id="rmClose" aria-label="Close review form">&times;</button>
+    </div>
+    <form id="reviewForm" action="https://formspree.io/f/xbgrkddr" method="POST">
+      <input type="text" name="_gotcha" aria-label="Leave this field empty" aria-hidden="true" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="_subject" value="New buyer review submission -- MIR site">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="rName">Your Name *</label>
+          <input type="text" id="rName" name="name" placeholder="John D." required maxlength="60" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="rCountry">Country *</label>
+          <select id="rCountry" name="country" required>
+            <option value="">Select&hellip;</option>
+            <option>United States</option>
+            <option>United Kingdom</option>
+            <option>Canada</option>
+            <option>Australia</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label id="rRateLabel">Your Rating *</label>
+        <div class="rm-stars" role="radiogroup" aria-labelledby="rRateLabel">
+          <input type="radio" id="rs5" name="rating" value="5 stars" checked><label for="rs5" title="5 stars" aria-label="5 stars">★</label>
+          <input type="radio" id="rs4" name="rating" value="4 stars"><label for="rs4" title="4 stars" aria-label="4 stars">★</label>
+          <input type="radio" id="rs3" name="rating" value="3 stars"><label for="rs3" title="3 stars" aria-label="3 stars">★</label>
+          <input type="radio" id="rs2" name="rating" value="2 stars"><label for="rs2" title="2 stars" aria-label="2 stars">★</label>
+          <input type="radio" id="rs1" name="rating" value="1 star"><label for="rs1" title="1 star" aria-label="1 star">★</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="rService">Service Used</label>
+          <select id="rService" name="service">
+            <option value="">Select one&hellip;</option>
+            <option>Meta / Facebook Ads</option>
+            <option>Meta Ads + Tracking (CAPI)</option>
+            <option>Ads + Landing Page</option>
+            <option>SEO + Web Design</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="rEmail">Email (verification only)</label>
+          <input type="email" id="rEmail" name="email" placeholder="john@example.com" autocomplete="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="rText">Your Review * <small style="color:var(--muted)">(min 20 characters)</small></label>
+        <textarea id="rText" name="review" rows="4" minlength="20" maxlength="800" required placeholder="What did we do, and what changed for your business?"></textarea>
+      </div>
+      <label class="rm-check">
+        <input type="checkbox" id="rConsent" required>
+        <span>I confirm this is my genuine experience and I agree to it being published with my first name and country. My email stays private.</span>
+      </label>
+      <div class="rm-actions">
+        <button type="submit" class="btn btn-primary" id="rmSend">Submit my review</button>
+      </div>
+      <p class="form-note" id="rmStatus" style="display:none" role="status" aria-live="polite"></p>
+      <p class="rm-note">Every review is read by a human before publishing &mdash; usually within 48 hours. If yours is approved, I will email you when it is live.</p>
+    </form>
+  </div>
+</div>
+
 </body>
 </html>
